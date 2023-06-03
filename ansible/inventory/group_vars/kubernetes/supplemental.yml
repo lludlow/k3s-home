@@ -1,0 +1,5 @@
+---
+timezone: "America/Detroit"
+kubevip_address: "192.168.10.251"
+cluster_cidr: "10.42.0.0/16"
+service_cidr: "10.43.0.0/16"
