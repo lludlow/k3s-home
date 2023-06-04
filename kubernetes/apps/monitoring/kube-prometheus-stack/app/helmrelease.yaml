@@ -57,8 +57,12 @@ spec:
               match:
                 alertname: Watchdog
               continue: true
-
-    alertmanager:
+        inhibit_rules:
+          - source_match:
+              severity: "critical"
+            target_match:
+              severity: "warning"
+            equal: ["alertname", "namespace"]
       enabled: true
       ingress:
         enabled: true
