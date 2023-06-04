@@ -97,9 +97,6 @@ spec:
             - *host
     persistence:
       enabled: true
-      storageClassName: "ceph-block"
-      accessModes:
-        - ReadWriteOnce
-      size: 2Gi
+      storageClassName: local-path
     testFramework:
       enabled: false
