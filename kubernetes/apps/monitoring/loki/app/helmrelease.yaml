@@ -67,7 +67,7 @@ spec:
               s3forcepathstyle: true
           ring:
             kvstore:
-              store: inmemory
+              store: memberlist
 
         ruler:
           enable_api: true
@@ -80,12 +80,12 @@ spec:
           rule_path: /rules
           ring:
             kvstore:
-              store: inmemory
+              store: memberlist
 
         distributor:
           ring:
             kvstore:
-              store: inmemory
+              store: memberlist
 
         compactor:
           working_directory: /var/loki/boltdb-shipper-compactor
@@ -100,7 +100,7 @@ spec:
           lifecycler:
             ring:
               kvstore:
-                store: inmemory
+                store: memberlist
 
         analytics:
           reporting_enabled: false
