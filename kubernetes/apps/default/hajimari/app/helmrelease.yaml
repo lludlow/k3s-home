@@ -40,6 +40,10 @@ spec:
       namespaceSelector:
         matchNames:
           - default
+          - flux-system
+          - monitoring
+          - networking
+          - rook-ceph
     ingress:
       main:
         enabled: true
@@ -49,7 +53,7 @@ spec:
             10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
           hajimari.io/enable: "false"
         hosts:
-          - host: &host "hajimari.${SECRET_DOMAIN}"
+          - host: &host "home.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
