@@ -17,6 +17,9 @@ spec:
       interval: 30m
   values:
     loki:
+      readinessProbe:
+        initialDelaySeconds: 120
+        
       structuredConfig:
         auth_enabled: false
 
@@ -64,7 +67,7 @@ spec:
               s3forcepathstyle: true
           ring:
             kvstore:
-              store: memberlist
+              store: inmemory
 
         ruler:
           enable_api: true
@@ -77,12 +80,12 @@ spec:
           rule_path: /rules
           ring:
             kvstore:
-              store: memberlist
+              store: inmemory
 
         distributor:
           ring:
             kvstore:
-              store: memberlist
+              store: inmemory
 
         compactor:
           working_directory: /var/loki/boltdb-shipper-compactor
@@ -97,15 +100,13 @@ spec:
           lifecycler:
             ring:
               kvstore:
-                store: memberlist
+                store: inmemory
 
         analytics:
           reporting_enabled: false
 
-      podAnnotations:
-        secret.reloader.stakater.com/reload: loki-secret
-
     gateway:
+      replicas: 1
       enabled: true
       image:
         registry: ghcr.io
@@ -127,11 +128,13 @@ spec:
               - *host
 
     write:
+      replicas: 1
       persistence:
         size: 20Gi
         storageClass: ceph-block
 
     read:
+      replicas: 1
       extraVolumeMounts:
         - name: rules
           mountPath: /rules
@@ -143,6 +146,7 @@ spec:
         storageClass: ceph-block
 
     backend:
+      replicas: 1
       extraVolumeMounts:
         - name: rules
           mountPath: /rules
