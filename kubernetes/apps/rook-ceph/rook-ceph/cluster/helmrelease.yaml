@@ -79,7 +79,7 @@ spec:
               - name: /dev/disk/by-id/nvme-INTEL_SSDPEKNW010T8_BTNH11760J621P0B
           - name: k3s-5
             devices:
-              - name: /dev/disk/by-id/nvme-INTEL_SSDPEKNW010T8_BTNH117623RB1P0B3
+              - name: /dev/disk/by-id/nvme-INTEL_SSDPEKNW010T8_BTNH117623RB1P0B
     cephBlockPools:
       - name: ceph-blockpool
         spec:
