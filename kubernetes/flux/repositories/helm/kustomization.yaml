@@ -18,3 +18,6 @@ resources:
   - ./stakater.yaml
   - ./weave-gitops.yaml
   - ./rook-ceph.yaml
+  - ./jupyterhub-charts.yaml
+  - ./prometheus-community-charts.yaml
+  - ./valheim-charts.yaml
