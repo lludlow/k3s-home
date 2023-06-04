@@ -120,6 +120,12 @@ spec:
         tls:
           - hosts:
               - *host
+
+      thanosService:
+        enabled: true
+      thanosServiceMonitor:
+        enabled: true
+
       prometheusSpec:
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
@@ -127,11 +133,15 @@ spec:
         probeSelectorNilUsesHelmValues: false
         enableAdminAPI: true
         walCompression: true
-        retentionSize: 8GB
+        retentionSize: 15GB
         storageSpec:
           volumeClaimTemplate:
             spec:
               storageClassName: local-path
               resources:
                 requests:
-                  storage: 10Gi
+                  storage: 20Gi
+
+        additionalScrapeConfigs:
+            static_configs:
+              - targets: ["192.168.10.9:9100", "192.168.10.10:9100"]
