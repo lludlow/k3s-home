@@ -95,7 +95,7 @@ spec:
             - *host
     persistence:
       enabled: true
-      storageClassName: "ceph-fs"
+      storageClassName: "ceph-block"
       accessModes:
         - ReadWriteMany
       size: 2Gi
