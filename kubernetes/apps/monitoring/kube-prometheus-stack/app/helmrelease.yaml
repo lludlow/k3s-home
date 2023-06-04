@@ -38,6 +38,26 @@ spec:
 
   values:
     cleanPrometheusOperatorObjectNames: true
+
+    alertmanager:
+      config:
+        receivers:
+          - name: "null"
+        route:
+          group_by: ["alertname", "job"]
+          group_wait: 30s
+          group_interval: 5m
+          repeat_interval: 6h
+          receiver: "null"
+          routes:
+            - receiver: "null"
+              match:
+                alertname: InfoInhibitor
+            - receiver: "null"
+              match:
+                alertname: Watchdog
+              continue: true
+
     alertmanager:
       enabled: true
       ingress:
@@ -53,11 +73,11 @@ spec:
           - hosts:
               - *host
       alertmanagerSpec:
-        replicas: 1
+        replicas: 3
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: local-path
+              storageClassName: ceph-block
               resources:
                 requests:
                   storage: 1Gi
@@ -116,10 +136,7 @@ spec:
 
     kubeControllerManager:
       enabled: true
-      endpoints: &cp
-        - 192.168.10.40
-        - 192.168.10.41
-        - 192.168.10.42
+      endpoints: ["192.168.10.40", "192.168.10.41", "192.168.10.42"]
       serviceMonitor:
         metricRelabelings:
           # Remove duplicate metrics
@@ -129,14 +146,18 @@ spec:
 
     kubeEtcd:
       enabled: true
-      endpoints: *cp
+      endpoints: ["192.168.10.40", "192.168.10.41", "192.168.10.42"]
+      service:
+        enabled: true
+        port: 2381
+        targetPort: 2381
 
     kubeProxy:
       enabled: false # Disabled because eBPF
 
     kubeScheduler:
       enabled: true
-      endpoints: *cp
+      endpoints: ["192.168.10.40", "192.168.10.41", "192.168.10.42"]
       serviceMonitor:
         metricRelabelings:
           # Remove duplicate metrics
@@ -164,6 +185,13 @@ spec:
         enabled: true
 
       prometheusSpec:
+        replicas: 3
+        replicaExternalLabelName: __replica__ # must match with thanos value `.query.replicaLabel[0]`
+        thanos:
+          image: quay.io/thanos/thanos:v0.31.0
+          objectStorageConfig:
+            name: thanos-objstore-secret
+            key: objstore.yml
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
@@ -174,7 +202,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: local-path
+              storageClassName: ceph-block
               resources:
                 requests:
                   storage: 20Gi
