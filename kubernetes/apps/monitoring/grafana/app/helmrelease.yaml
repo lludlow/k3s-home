@@ -50,14 +50,67 @@ spec:
     datasources:
       datasources.yaml:
         apiVersion: 1
+        deleteDatasources:
+          - name: Loki
+            orgId: 1
+          - name: Alertmanager
+            orgId: 1
         datasources:
           - name: Prometheus
             type: prometheus
             access: proxy
-            url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+            url: http://thanos-query-frontend.monitoring.svc.cluster.local:9090
             isDefault: true
+          - name: Loki
+            type: loki
+            access: proxy
+            url: http://loki-gateway.monitoring.svc.cluster.local
+            jsonData:
+              maxLines: 250
+          - name: Alertmanager
+            type: alertmanager
+            access: proxy
+            url: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
+            jsonData:
+              implementation: prometheus
+
     dashboards:
       default:
+        # Ref: https://grafana.com/grafana/dashboards/11314-unifi-poller-uap-insights-prometheus/
+        unifi-uap:
+          gnetId: 11314
+          revision: 10
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/11315-unifi-poller-client-insights-prometheus/
+        unifi-client:
+          gnetId: 11315
+          revision: 9
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/11311-unifi-poller-network-sites-prometheus/
+        unifi-sites:
+          gnetId: 11311
+          revision: 5
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+        node-exporter-full:
+          gnetId: 1860
+          revision: 30
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/5342-ceph-pools/
+        ceph-pools:
+          gnetId: 5342
+          revision: 9
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/5336-ceph-osd-single/
+        ceph-osd:
+          gnetId: 5336
+          revision: 9
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/2842-ceph-cluster/
+        ceph-cluster:
+          gnetId: 2842
+          revision: 16
+          datasource: Prometheus
         cert-manager:
           url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
           datasource: Prometheus
@@ -66,6 +119,27 @@ spec:
           datasource: Prometheus
         flux-control-plane:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/control-plane.json
+          datasource: Prometheus
+        flux-logs:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/logs.json
+          datasource: Prometheus
+        kubernetes-api-server:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json
+          datasource: Prometheus
+        kubernetes-coredns:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-coredns.json
+          datasource: Prometheus
+        kubernetes-global:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-global.json
+          datasource: Prometheus
+        kubernetes-namespaces:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-namespaces.json
+          datasource: Prometheus
+        kubernetes-nodes:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
+          datasource: Prometheus
+        kubernetes-pods:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
           datasource: Prometheus
     sidecar:
       dashboards:
@@ -94,7 +168,15 @@ spec:
         - hosts:
             - *host
     persistence:
-      enabled: true
-      storageClassName: local-path
+      enabled: false
+
     testFramework:
       enabled: false
+
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: grafana
