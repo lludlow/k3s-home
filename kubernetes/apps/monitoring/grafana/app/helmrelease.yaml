@@ -99,7 +99,7 @@ spec:
       enabled: true
       storageClassName: "ceph-block"
       accessModes:
-        - ReadWriteMany
+        - ReadWriteOnce
       size: 2Gi
     testFramework:
       enabled: false
