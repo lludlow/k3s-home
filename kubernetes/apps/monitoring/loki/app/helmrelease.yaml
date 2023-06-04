@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: loki
-      version: 5.5.2
+      version: 5.6.1
       sourceRef:
         kind: HelmRepository
         name: grafana
@@ -17,9 +17,6 @@ spec:
       interval: 30m
   values:
     loki:
-      readinessProbe:
-        initialDelaySeconds: 120
-        
       structuredConfig:
         auth_enabled: false
 
