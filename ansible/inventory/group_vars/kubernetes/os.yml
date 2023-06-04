@@ -29,3 +29,19 @@ ubuntu:
     - socat
     - python3-kubernetes
     - python3-yaml
+    - apt-transport-https
+    - arptables
+    - ca-certificates
+    - curl
+    - ebtables
+    - fzf
+    - gdisk
+    - iputils-ping
+    - lvm2
+    - net-tools
+    - ntpdate
+    - open-iscsi
+    - psmisc
+    - smartmontools
+    - software-properties-common
+    - unzip
