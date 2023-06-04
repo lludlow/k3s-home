@@ -5,6 +5,8 @@ metadata:
   name: grafana
   namespace: monitoring
 spec:
+  dependsOn:
+    - name: cluster-apps-rook-ceph-cluster
   interval: 30m
   chart:
     spec:
