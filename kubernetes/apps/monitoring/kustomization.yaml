@@ -9,3 +9,4 @@ resources:
   - ./thanos/ks.yaml
   - ./loki/ks.yaml
   - ./unpoller/ks.yaml
+  - ./speedtest-prometheus/ks.yaml
