@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: postgresql
+  name: printerdb
   namespace: databases
 spec:
   interval: 10m
@@ -36,11 +36,11 @@ spec:
     image:
       registry: docker.io
       repository: bitnami/postgresql
-      tag: "15.2.0"
+      tag: "13.11.10"
     primary:
       persistence:
         enabled: true
-        existingClaim: postgresql-data
+        existingClaim: printerdb-data-v1
     metrics:
       enabled: true
       serviceMonitor:
