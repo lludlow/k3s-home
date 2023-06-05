@@ -41,6 +41,9 @@ spec:
       persistence:
         enabled: true
         existingClaim: printerdb-data-v1
+    service:
+      type: LoadBalancer
+      loadBalancerIP: 192.168.10.51
     metrics:
       enabled: true
       serviceMonitor:
