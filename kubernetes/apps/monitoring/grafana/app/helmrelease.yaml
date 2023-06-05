@@ -75,7 +75,7 @@ spec:
               implementation: prometheus
 
     dashboards:
-      Unifi:
+      unifi:
         # Ref: https://grafana.com/grafana/dashboards/11314-unifi-poller-uap-insights-prometheus/
         unifi-uap:
           gnetId: 11314
