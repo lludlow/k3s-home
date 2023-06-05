@@ -33,8 +33,6 @@ spec:
       namespace: kube-system
     - name: rook-ceph-cluster
       namespace: rook-ceph
-    - name: thanos
-      namespace: monitoring
 
   values:
     cleanPrometheusOperatorObjectNames: true
@@ -184,18 +182,13 @@ spec:
               - *host
 
       thanosService:
-        enabled: true
+        enabled: false
       thanosServiceMonitor:
-        enabled: true
+        enabled: false
 
       prometheusSpec:
-        replicas: 3
+        replicas: 1
         replicaExternalLabelName: __replica__ # must match with thanos value `.query.replicaLabel[0]`
-        thanos:
-          image: quay.io/thanos/thanos:v0.31.0
-          objectStorageConfig:
-            name: thanos-objstore-secret
-            key: objstore.yml
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
