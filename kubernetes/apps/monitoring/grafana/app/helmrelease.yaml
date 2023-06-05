@@ -92,7 +92,7 @@ spec:
           revision: 5
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
-      default:
+      default: #placeholder
         speedtest-exporter-hub:
           gnetId: 13665
           revision: 4
