@@ -92,16 +92,18 @@ spec:
           revision: 5
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
-      default: #placeholder
+      default:
+        #Ref: https://grafana.com/grafana/dashboards/13665-speedtest-exporter-dashboard/
         speedtest-exporter-hub:
           gnetId: 13665
           revision: 4
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
+        # REF: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
         node-exporter-full:
           gnetId: 1860
-          revision: 30
+          revision: 31
           datasource: Prometheus
       ceph:
         # Ref: https://grafana.com/grafana/dashboards/5342-ceph-pools/
@@ -162,6 +164,7 @@ spec:
           url: https://raw.githubusercontent.com/cilium/cilium/v1.13.3/examples/kubernetes/addons/prometheus/files/grafana-dashboards/hubble-dashboard.json
           datasource: Prometheus
       loki:
+        #Ref: https://grafana.com/grafana/dashboards/13407-loki2-0-global-metrics/
         loki-metrics:
           gnetId: 13407
           revision: 1
