@@ -16,19 +16,35 @@ spec:
         name: bjw-s
         namespace: flux-system
 
-  install:
-    createNamespace: true
-  
   values:
+    controller:
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
+
     image:
       repository: public.ecr.aws/docker/library/eclipse-mosquitto
       tag: 2.0.15
-    env:
-      TZ: America/Detroit
+
+    initContainers:
+      copy-config:
+        image: public.ecr.aws/docker/library/eclipse-mosquitto:2.0.15@sha256:786ca925d7394a38dc7be5c02fc5e4da7e686c915a2673c6b3d1652c4e8c050b
+        command:
+          - "/bin/sh"
+          - -c
+        args:
+          - cp /data/mosquitto_secret/* /data/external_config/ && mosquitto_passwd -U /data/external_config/mosquitto_pwd
+        volumeMounts:
+          - name: mosquitto-secret
+            mountPath: /data/mosquitto_secret
+          - name: external-config
+            mountPath: /data/external_config
+
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: 192.168.10.54
+        annotations:
+          io.cilium/lb-ipam-ips: "192.168.10.54"
         externalTrafficPolicy: Cluster
         ports:
           http:
@@ -36,17 +52,34 @@ spec:
           mqtt:
             enabled: true
             port: 1883
-    auth:
-      enabled: true
-    podAnnotations:
-      secret.reloader.stakater.com/reload: mosquitto
+
     persistence:
-      data:
+      mosquitto-config:
         enabled: true
-        existingClaim: mosquitto-config-v1
-      configinc:
+        type: configMap
+        name: mosquitto-configmap
+        mountPath: /mosquitto/config/mosquitto.conf
+        subPath: mosquitto.conf
+      mosquitto-secret:
         enabled: true
-        type: custom
-        volumeSpec:
-          secret:
-            secretName: mosquitto
+        type: secret
+        name: mosquitto-secret
+        mountPath: "-"
+      external-config:
+        enabled: true
+        type: emptyDir
+        mountPath: /mosquitto/external_config
+
+    resources:
+      requests:
+        cpu: 5m
+        memory: 10M
+      limits:
+        memory: 10M
+
+    volumeClaimTemplates:
+      - name: data
+        mountPath: /data
+        accessMode: ReadWriteOnce
+        size: 512Mi
+        storageClass: ceph-block
