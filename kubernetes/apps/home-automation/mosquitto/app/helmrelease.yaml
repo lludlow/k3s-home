@@ -43,7 +43,8 @@ spec:
     service:
       main:
         type: LoadBalancer
-        externalIPs: 192.168.10.54
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: "${SVC_MQTT_ADDR}"
         externalTrafficPolicy: Local
         ports:
           http:
