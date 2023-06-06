@@ -5,30 +5,34 @@ metadata:
   name: mosquitto
   namespace: home-automation
 spec:
-  interval: 5m
+  interval: 30m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: mosquitto
-      version: 4.8.2
+      chart: app-template
+      version: 1.5.1
+      interval: 30m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
-  install:
-    createNamespace: true
+
   values:
     image:
-      repository: ghcr.io/k8s-at-home/eclipse-mosquitto
-      tag: v2.0.15
+      repository: public.ecr.aws/docker/library/eclipse-mosquitto
+      tag: 2.0.15
     env:
       TZ: America/Detroit
     service:
       main:
         type: LoadBalancer
         loadBalancerIP: 192.168.10.54
-        externalTrafficPolicy: Local
+        externalTrafficPolicy: Cluster
+        ports:
+          http:
+            enabled: false
+          mqtt:
+            enabled: true
+            port: 1883
     auth:
       enabled: true
     podAnnotations:
