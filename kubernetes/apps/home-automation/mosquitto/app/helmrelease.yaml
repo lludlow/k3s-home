@@ -43,7 +43,6 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: 
         externalIPs: 192.168.10.54
         externalTrafficPolicy: Local
         ports:
