@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: home-automation
 resources:
 #  - ./config-pvc.yaml
-#  - ./mqtt-secrets.sops.yaml
+  - ./mqtt-secrets.sops.yaml
   - ./helmrelease.yaml
 commonLabels:
   app.kubernetes.io/name: mosquitto
