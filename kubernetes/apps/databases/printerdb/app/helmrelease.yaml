@@ -43,7 +43,8 @@ spec:
         existingClaim: printerdb-data-v1
       service:
         type: LoadBalancer
-        loadBalancerIP: 192.168.10.51
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: "${SVC_POSTGRES_ADDR}"
     metrics:
       enabled: true
       serviceMonitor:
