@@ -75,7 +75,7 @@ spec:
         annotations:
           hajimari.io/icon: mdi:movie-search
         hosts:
-          - host: &host prowlarr.${SECRET_PUBLIC_DOMAIN}
+          - host: &host prowlarr.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
