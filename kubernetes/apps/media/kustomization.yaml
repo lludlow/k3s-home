@@ -6,4 +6,4 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./overseerr/ks.yaml
-  #- ./prowlarr/ks.yaml
+  - ./prowlarr/ks.yaml
