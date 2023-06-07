@@ -7,5 +7,4 @@ resources:
   # Flux-Kustomizations
   - ./overseerr/ks.yaml
   - ./prowlarr/ks.yaml
-  - ./tautulli/ks.yaml
-  
+#  - ./tautulli/ks.yaml
