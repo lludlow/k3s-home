@@ -30,7 +30,7 @@ spec:
                 - name: POSTGRES_EXTRA_OPTS
                   value: "-n public -Z6"
                 - name: POSTGRES_HOST
-                  value: postgres.database.svc.cluster.local
+                  value: postgres.databases.svc.cluster.local
                 - name: POSTGRES_USER
                   valueFrom:
                     secretKeyRef:
