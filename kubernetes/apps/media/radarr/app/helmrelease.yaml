@@ -104,8 +104,8 @@ spec:
       supplementalGroups: [10000]
 
     volumeClaimTemplates:
-      - name: config1
-        mountPath: /config1
+      - name: config
+        mountPath: /config
         accessMode: ReadWriteOnce
         size: 15Gi
         storageClass: ceph-block
@@ -117,12 +117,12 @@ spec:
         server: ${NAS}
         path: /volume1/video
         mountPath: /media
-      config:
+      config1:
         enabled: true
         type: nfs
         server: 192.168.10.9
         path: /mnt/user/appdata/radarr
-        mountPath: /config
+        mountPath: /config1
 
     resources:
       requests:
