@@ -205,6 +205,7 @@ spec:
                   storage: 20Gi
 
         additionalScrapeConfigs:
-          - job_name: unraid
+          - job_name: node-exporter
             static_configs:
-              - targets: ["192.168.10.9:9100"]
+              - targets: 
+                - 192.168.10.9:9100
