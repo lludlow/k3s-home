@@ -205,5 +205,7 @@ spec:
                   storage: 20Gi
 
         additionalScrapeConfigs:
+          - job_name: node-exporter
+            scrape_timeout: 15s
             static_configs:
               - targets: ["192.168.10.9:9100", "192.168.10.10:9100"]
