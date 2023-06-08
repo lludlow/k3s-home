@@ -22,3 +22,4 @@ resources:
   - ./prometheus-community-charts.yaml
   - ./valheim-charts.yaml
   - ./k8s-at-home-charts.yaml
+  - ./zalando-postgres-operator.yaml
