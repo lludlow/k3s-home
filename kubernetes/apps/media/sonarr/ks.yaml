@@ -6,9 +6,6 @@ metadata:
   name: cluster-apps-sonarr
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-cloudnative-pg-cluster
-    - name: cluster-apps-external-secrets-stores
   path: ./kubernetes/apps/media/sonarr/app
   prune: true
   sourceRef:

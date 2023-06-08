@@ -6,8 +6,6 @@ metadata:
   name: cluster-apps-radarr
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-zalando-postgres-cluster
   path: ./kubernetes/apps/media/radarr/app
   prune: true
   sourceRef:
