@@ -32,14 +32,6 @@ spec:
 
   values:
 
-    initContainers:
-      01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:14.8
-        imagePullPolicy: IfNotPresent
-        envFrom:
-          - secretRef:
-              name: radarr-secret
-
     controller:
       type: statefulset
       annotations:
@@ -117,12 +109,12 @@ spec:
         server: ${NAS}
         path: /volume1/video
         mountPath: /media
-#      config1:
-#        enabled: true
-#        type: nfs
-#        server: 192.168.10.9
-#        path: /mnt/user/appdata/radarr
-#        mountPath: /config1
+      config1:
+        enabled: true
+        type: nfs
+        server: 192.168.10.9
+        path: /mnt/user/appdata/radarr
+        mountPath: /config1
 
     resources:
       requests:
