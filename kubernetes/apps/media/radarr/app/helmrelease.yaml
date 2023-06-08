@@ -88,7 +88,7 @@ spec:
         annotations:
           hajimari.io/icon: mdi:filmstrip
         hosts:
-          - host: *host
+          - host: &host "radarr.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
