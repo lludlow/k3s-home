@@ -36,12 +36,18 @@ spec:
     loki:
       structuredConfig:
         auth_enabled: false
+
         server:
           log_level: info
           http_listen_port: 3100
           grpc_listen_port: 9095
+
+          grpc_server_max_recv_msg_size: 8388608
+          grpc_server_max_send_msg_size: 8388608
+
         memberlist:
           join_members: ["loki-memberlist"]
+
         limits_config:
           retention_period: 14d
           enforce_metric_name: false
@@ -55,6 +61,7 @@ spec:
           per_stream_rate_limit_burst: 20MB
           shard_streams:
             enabled: true
+
         schema_config:
           configs:
             - from: "2022-01-11" # quote
@@ -64,6 +71,7 @@ spec:
               index:
                 prefix: loki_index_
                 period: 24h
+
         common:
           path_prefix: /var/loki
           replication_factor: 3
@@ -75,10 +83,11 @@ spec:
           ring:
             kvstore:
               store: memberlist
+
         ruler:
           enable_api: true
           enable_alertmanager_v2: true
-          alertmanager_url: http://kube-prometheus-stack-alertmanager:9093
+          alertmanager_url: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
           storage:
             type: local
             local:
@@ -87,10 +96,12 @@ spec:
           ring:
             kvstore:
               store: memberlist
+
         distributor:
           ring:
             kvstore:
               store: memberlist
+
         compactor:
           working_directory: /var/loki/boltdb-shipper-compactor
           shared_store: s3
@@ -98,14 +109,17 @@ spec:
           retention_enabled: true
           retention_delete_delay: 2h
           retention_delete_worker_count: 150
+
         ingester:
           max_chunk_age: 1h
           lifecycler:
             ring:
               kvstore:
                 store: memberlist
+
         analytics:
           reporting_enabled: false
+
     gateway:
       replicas: 3
       ingress:
@@ -113,6 +127,8 @@ spec:
         ingressClassName: nginx
         annotations:
           hajimari.io/enable: "false"
+          nginx.ingress.kubernetes.io/whitelist-source-range: |
+            10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
         hosts:
           - host: &host loki.${SECRET_DOMAIN}
             paths:
@@ -121,8 +137,10 @@ spec:
         tls:
           - hosts:
               - *host
+
     read:
       persistence:
+        size: 20Gi
         storageClass: ceph-block
       extraVolumeMounts:
         - name: rules
@@ -130,11 +148,15 @@ spec:
       extraVolumes:
         - name: rules
           emptyDir: {}
+
     write:
       persistence:
+        size: 20Gi
         storageClass: ceph-block
+
     backend:
       persistence:
+        size: 20Gi
         storageClass: ceph-block
       extraVolumeMounts:
         - name: rules
@@ -147,10 +169,12 @@ spec:
             name: loki-alerting-rules
         - name: scratch
           emptyDir: {}
+
     monitoring:
       dashboards:
         annotations:
           kustomize.toolkit.fluxcd.io/substitute: disabled
+          grafana_folder: Loki
         labels:
           grafana_dashboard: "true"
       serviceMonitor:
@@ -165,6 +189,7 @@ spec:
         enabled: false
     test:
       enabled: false
+
   valuesFrom:
     - targetPath: loki.structuredConfig.common.storage.s3.bucketnames
       kind: ConfigMap
