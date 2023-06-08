@@ -109,12 +109,12 @@ spec:
         server: ${NAS}
         path: /volume1/video
         mountPath: /media
-      config1:
+      download:
         enabled: true
         type: nfs
-        server: 192.168.10.9
-        path: /mnt/user/appdata/radarr
-        mountPath: /config1
+        server: ${NAS}
+        path: /volume2/download
+        mountPath: /download
 
     resources:
       requests:
