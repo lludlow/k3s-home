@@ -111,6 +111,9 @@ spec:
         path: /volume2/download
         mountPath: /download
         
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
+
     resources:
       requests:
         cpu: 10m
