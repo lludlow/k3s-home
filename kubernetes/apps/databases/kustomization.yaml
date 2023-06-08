@@ -5,3 +5,4 @@ resources:
   - ./namespace.yaml
   - ./printerdb/ks.yaml
   - ./zalando-postgres/ks.yaml
+  - ./postgres-backup/ks.yaml
