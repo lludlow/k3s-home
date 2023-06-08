@@ -29,8 +29,7 @@ spec:
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
-    - name: volsync
-      namespace: volsync
+
   values:
     controller:
       type: statefulset
@@ -50,7 +49,6 @@ spec:
         sabnzbd.default.svc.cluster,
         sabnzbd.default.svc.cluster.local,
         sabnzbd.madhouse.pro
-
 
     service:
       main:
