@@ -6,7 +6,7 @@ metadata:
   name: prowlarr
   namespace: media
 spec:
-  sourcePVC: config-prowlarr-v1
+  sourcePVC: prowlarr-config-v1
   trigger:
     schedule: "0 7 * * *"
   restic:
