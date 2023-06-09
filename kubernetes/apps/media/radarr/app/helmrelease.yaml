@@ -112,8 +112,8 @@ spec:
       download:
         enabled: true
         type: nfs
-        server: ${NAS}
-        path: /volume2/download
+        server: ${FRANK}
+        path: /mnt/user/downloads
         mountPath: /download
 
     nodeSelector:

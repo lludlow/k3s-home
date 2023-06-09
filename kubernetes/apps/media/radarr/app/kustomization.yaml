@@ -6,3 +6,5 @@ namespace: media
 resources:
   - ./secret.sops.yaml
   - ./helmrelease.yaml
+  - ./volsync-secret.sops.yaml
+  - ./volsync.yaml
