@@ -1,8 +1,16 @@
+# Folders
+ignore/
+logs/
+testing/
+
 # Trash
 .DS_Store
 Thumbs.db
+
 # k8s
-kubeconfig
+kubeconfig*
+kubernetes/schemas
+
 # vscode-sops
 .decrypted~*.yaml
 .config.env
@@ -11,3 +19,11 @@ kubeconfig
 *.key
 # Ansible
 xanmanning.k3s*
+
+# Terraform
+## Local .terraform directories
+**/.terraform/*
+
+## .tfstate files
+*.tfstate
+*.tfstate.*
