@@ -25,3 +25,4 @@ resources:
   - ./zalando-postgres-operator.yaml
   - ./backube.yaml
   - ./piraeus.yaml
+  - ./intel.yaml
