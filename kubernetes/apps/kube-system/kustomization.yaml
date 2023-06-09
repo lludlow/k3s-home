@@ -8,3 +8,5 @@ resources:
   - ./metrics-server/ks.yaml
   - ./reloader/ks.yaml
   - ./snapshot-controller/ks.yaml
+  - ./intel-device-plugin/ks.yaml
+  - ./node-feature-discovery/ks.yaml
