@@ -41,9 +41,15 @@ spec:
     ingress:
       main:
         enabled: false
+
     resources:
       requests:
         cpu: 10m
         memory: 128Mi
       limits:
         memory: 500Mi
+tolerations:
+  - key: node-role.kubernetes.io/control-plane
+    operator: Exists
+  - key: node-role.kubernetes.io/master
+    operator: Exists
