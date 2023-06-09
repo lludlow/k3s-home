@@ -10,7 +10,7 @@ spec:
   volume:
     size: 30Gi
 
-  numberOfInstances: 3
+  numberOfInstances: 2
 
   users:
     postgres: # database owner
