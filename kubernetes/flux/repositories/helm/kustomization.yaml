@@ -26,3 +26,5 @@ resources:
   - ./backube.yaml
   - ./piraeus.yaml
   - ./intel.yaml
+  - ./node-feature-discovery.yaml
+  
