@@ -26,6 +26,7 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+    
   values:
     initContainers:
       01-init-db:
@@ -34,32 +35,32 @@ spec:
         envFrom:
           - secretRef:
               name: miniflux-secret
+
     controller:
       replicas: 2
       strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: "true"
+
     image:
       repository: ghcr.io/miniflux/miniflux
       tag: 2.0.44
+
     env:
-      BASE_URL: https://miniflux.devbu.io
+      BASE_URL: https://miniflux.${SECRET_DOMAIN}
       CREATE_ADMIN: "1"
       DEBUG: "1"
       LOG_DATE_TIME: "1"
       METRICS_ALLOWED_NETWORKS: "10.42.0.0/16"
       METRICS_COLLECTOR: "1"
-      OAUTH2_CLIENT_ID: miniflux
-      OAUTH2_USER_CREATION: "1"
-      OAUTH2_OIDC_DISCOVERY_ENDPOINT: https://auth.devbu.io
-      OAUTH2_PROVIDER: oidc
-      OAUTH2_REDIRECT_URL: https://miniflux.devbu.io/oauth2/oidc/callback
       POLLING_SCHEDULER: entry_frequency
       POLLING_FREQUENCY: "15"
       RUN_MIGRATIONS: "1"
+
     envFrom:
       - secretRef:
           name: miniflux-secret
+
     service:
       main:
         ports:
@@ -68,21 +69,23 @@ spec:
     serviceMonitor:
       main:
         enabled: true
+
     ingress:
       main:
         enabled: true
         ingressClassName: nginx
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.devbu.io
+          external-dns.alpha.kubernetes.io/target: ingress.${SECRET_DOMAIN}
           hajimari.io/icon: mdi:rss
         hosts:
-          - host: &host "{{ .Release.Name }}.devbu.io"
+          - host: &host "miniflux.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
+
     probes:
       liveness: &probes
         enabled: true
@@ -98,13 +101,8 @@ spec:
       readiness: *probes
       startup:
         enabled: false
-    topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: *app
+
+
     resources:
       requests:
         cpu: 10m
