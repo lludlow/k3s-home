@@ -24,3 +24,4 @@ resources:
   - ./k8s-at-home-charts.yaml
   - ./zalando-postgres-operator.yaml
   - ./backube.yaml
+  - ./piraeus.yaml
