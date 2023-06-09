@@ -8,7 +8,7 @@ metadata:
 spec:
   sourcePVC: config-radarr-0
   trigger:
-    schedule: "0 23 * * *"
+    schedule: "0 7 * * *"
   restic:
     copyMethod: Snapshot
     pruneIntervalDays: 7
