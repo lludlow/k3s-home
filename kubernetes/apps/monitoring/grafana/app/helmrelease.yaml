@@ -116,6 +116,11 @@ spec:
           gnetId: 2842
           revision: 16
           datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/13502-minio-dashboard/
+        minio:
+          gnetId: 13502
+          revision: 21
+          datasource: Prometheus
         cert-manager:
           url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
           datasource: Prometheus

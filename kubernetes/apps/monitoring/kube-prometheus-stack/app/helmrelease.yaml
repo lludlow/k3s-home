@@ -207,9 +207,8 @@ spec:
         additionalScrapeConfigs:
           - job_name: node-exporter
             static_configs:
-              - targets: 
-                - 192.168.10.9:9100
+              - targets: ["192.168.10.9:9100"] #frank
           - job_name: minio
             metrics_path: /minio/v2/metrics/cluster
             static_configs:
-              - targets: ["192.168.10.9:9000"] # nas
+              - targets: ["192.168.10.9:9000"] # frank
