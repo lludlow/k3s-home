@@ -95,6 +95,12 @@ spec:
         server: ${NAS}
         path: /volume1/video
         mountPath: /media
+      audiobooks:
+        enabled: true
+        type: nfs
+        server: ${NAS}
+        path: /volume1/Library/Audiobooks/Library
+        mountPath: /audiobooks
       transcode:
         enabled: true
         type: emptyDir
