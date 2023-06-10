@@ -21,12 +21,16 @@ spec:
 
     image:
       repository: linuxserver/calibre-web
-      tag: 0.6.20
+      tag: latest
+      pullPolicy: IfNotPresent
     env:
       TZ: "${TZ}"
-      PUID: 911
+      PUID: 1000
       PGID: 1000
       DOCKER_MODS: "linuxserver/mods:universal-calibre"
+    securityContext:
+      seccompProfile:
+        type: Unconfined
     service:
       main:
         ports:
@@ -48,13 +52,6 @@ spec:
         tls:
           - hosts:
               - *host
-    podSecurityContext:
-      runAsUser: 911
-      runAsGroup: 1000
-      fsGroup: 1000
-      fsGroupChangePolicy: "OnRootMismatch"
-      supplementalGroups:
-        - 5600
 
     persistence:
       books:
