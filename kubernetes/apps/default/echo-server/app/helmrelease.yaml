@@ -59,7 +59,7 @@ spec:
           external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}"
           hajimari.io/icon: video-input-antenna
         hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${SECRET_EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
