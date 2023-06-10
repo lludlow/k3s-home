@@ -111,8 +111,8 @@ spec:
       download:
         enabled: true
         type: nfs
-        server: ${FRANK}
-        path: /mnt/user/downloads
+        server: ${NAS}
+        path: /volume2/download
         mountPath: /download
       incomplete:
         enabled: true
