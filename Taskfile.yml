@@ -16,6 +16,7 @@ includes:
   cluster: .taskfiles/ClusterTasks.yml
   precommit: .taskfiles/PrecommitTasks.yml
   vs: .taskfiles/VolSync/Tasks.yml
+  k8s: .taskfiles/k8s/Taskfile.yaml
 
 tasks:
   init:
