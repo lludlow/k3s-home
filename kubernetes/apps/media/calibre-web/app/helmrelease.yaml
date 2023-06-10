@@ -20,21 +20,24 @@ spec:
       type: statefulset
 
     image:
-      repository: ghcr.io/bjw-s/calibre-web
-      tag: 0.6.20@sha256:64dee2680a00ef5d38cfdb14bb62786d92ad50393243f33e003ff00ba1e45e0f
+      repository: linuxserver/calibre-web
+      tag: version-0.6.19
 
     podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
-        - 65539
+        - 5600
 
     enableServiceLinks: false
 
     env:
-      CACHE_DIR: /cache
+      TZ: "${TZ}"
+      PUID: 1000
+      PGID: 1000
+      DOCKER_MODS: "linuxserver/mods:universal-calibre"
 
     service:
       main:
