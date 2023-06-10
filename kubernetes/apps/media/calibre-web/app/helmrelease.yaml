@@ -64,6 +64,12 @@ spec:
         enabled: true
         type: emptyDir
         mountPath: /cache
+      custom-scripts:
+        enabled: true
+        type: configMap
+        name: calibre-web-configmap
+        mountPath: /custom-cont-init.d/patch-session-protection.sh
+        subPath: patch-session-protection.sh
 
     resources:
       requests:
