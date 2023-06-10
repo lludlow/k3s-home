@@ -13,3 +13,4 @@ resources:
   - ./sabnzbd/ks.yaml
   - ./doplarr/ks.yaml
   - ./plex/ks.yaml
+  - ./wizarr/ks.yaml
