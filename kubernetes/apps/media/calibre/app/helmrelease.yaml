@@ -24,6 +24,9 @@ spec:
       retries: 5
 
   values:
+    controller:
+      type: statefulset
+      
     image:
     # https://hub.docker.com/r/linuxserver/calibre
       repository: lscr.io/linuxserver/calibre
