@@ -59,10 +59,10 @@ spec:
             port: 8081
             protocol: TCP
             targetPort: 8081
-        type: LoadBalancer
-        externalTrafficPolicy: Cluster
-        annotations:
-          metallb.universe.tf/loadBalancerIPs: "${SVC_CALIBRE_ADDR}"
+#        type: LoadBalancer
+#        externalTrafficPolicy: Cluster
+#        annotations:
+#          metallb.universe.tf/loadBalancerIPs: "${SVC_CALIBRE_ADDR}"
 
     ingress:
       main:
