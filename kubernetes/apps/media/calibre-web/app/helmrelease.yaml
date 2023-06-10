@@ -21,10 +21,10 @@ spec:
 
     image:
       repository: linuxserver/calibre-web
-      tag: 0.6.19
+      tag: 0.6.20
     env:
       TZ: "${TZ}"
-      PUID: 1000
+      PUID: 911
       PGID: 1000
       DOCKER_MODS: "linuxserver/mods:universal-calibre"
     service:
@@ -49,7 +49,7 @@ spec:
           - hosts:
               - *host
     podSecurityContext:
-      runAsUser: 1000
+      runAsUser: 911
       runAsGroup: 1000
       fsGroup: 1000
       fsGroupChangePolicy: "OnRootMismatch"
