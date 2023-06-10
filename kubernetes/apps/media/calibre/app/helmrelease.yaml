@@ -1,0 +1,109 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app calibre
+  namespace: media
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+
+  values:
+    image:
+    # https://hub.docker.com/r/linuxserver/calibre
+      repository: lscr.io/linuxserver/calibre
+      # https://github.com/linuxserver/docker-calibre/issues/104#issuecomment-1270904811
+      tag: "6.4.0"
+      pullPolicy: IfNotPresent
+
+    env:
+      TZ: "${TZ}"
+      PUID: "1000"
+      PGID: "1000"
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+      content-server:
+        enabled: true
+        ports:
+          content-server:
+            enabled: true
+            port: 8081
+
+      webserver:
+        enabled: true
+        ports:
+          webserver:
+            enabled: true
+            port: 8081
+            protocol: TCP
+            targetPort: 8081
+        type: LoadBalancer
+        externalTrafficPolicy: Cluster
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: "${SVC_CALIBRE_ADDR}"
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          hajimari.io/icon: mdi:bookshelf
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+
+    volumeClaimTemplates:
+      - name: config
+        mountPath: /config
+        accessMode: ReadWriteOnce
+        size: 15Gi
+        storageClass: ceph-block
+
+    persistence:
+      books:
+        enabled: true
+        type: nfs
+        server: ${NAS}
+        path: /volume1/Library/Calibre/Calibre_eBooks
+        mountPath: /books
+      download:
+        enabled: true
+        type: nfs
+        server: ${FRANK}
+        path: /mnt/user/downloads
+        mountPath: /download
+      cache:
+        enabled: true
+        type: emptyDir
+        mountPath: /cache
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 249M
+      limits:
+        memory: 4000M
