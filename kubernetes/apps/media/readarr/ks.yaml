@@ -7,9 +7,14 @@ metadata:
   namespace: flux-system
 spec:
   path: ./kubernetes/apps/media/readarr/app
+  prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
+  wait: false # no flux ks dependents
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   dependsOn:
     - name: rook-ceph-cluster
     - name: system-volsync
