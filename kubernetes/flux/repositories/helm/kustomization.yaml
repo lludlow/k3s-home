@@ -27,4 +27,5 @@ resources:
   - ./piraeus.yaml
   - ./intel.yaml
   - ./node-feature-discovery.yaml
+  - ./kyverno-charts.yaml
   
