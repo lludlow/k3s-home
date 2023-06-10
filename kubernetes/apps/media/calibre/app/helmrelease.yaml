@@ -44,12 +44,6 @@ spec:
         ports:
           http:
             port: 8080
-      content-server:
-        enabled: true
-        ports:
-          content-server:
-            enabled: true
-            port: 8081
 
       webserver:
         enabled: true
@@ -59,7 +53,7 @@ spec:
             port: 8081
             protocol: TCP
             targetPort: 8081
-#        type: LoadBalancer
+        type: ClusterIP
 #        externalTrafficPolicy: Cluster
 #        annotations:
 #          metallb.universe.tf/loadBalancerIPs: "${SVC_CALIBRE_ADDR}"
