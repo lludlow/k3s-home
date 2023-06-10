@@ -21,24 +21,12 @@ spec:
 
     image:
       repository: linuxserver/calibre-web
-      tag: version-0.6.19
-
-    podSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
-      fsGroupChangePolicy: "OnRootMismatch"
-      supplementalGroups:
-        - 5600
-
-    enableServiceLinks: false
-
+      tag: 0.6.19
     env:
       TZ: "${TZ}"
       PUID: 1000
       PGID: 1000
       DOCKER_MODS: "linuxserver/mods:universal-calibre"
-
     service:
       main:
         ports:
@@ -60,6 +48,13 @@ spec:
         tls:
           - hosts:
               - *host
+    podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 5600
 
     persistence:
       books:
