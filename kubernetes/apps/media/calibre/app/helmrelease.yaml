@@ -89,9 +89,7 @@ spec:
         mountPath: /books
       download:
         enabled: true
-        type: nfs
-        server: ${NAS}
-        path: /volume2/download
+        existingClaim: downloads
         mountPath: /download
       cache:
         enabled: true
