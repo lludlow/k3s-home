@@ -21,7 +21,7 @@ spec:
 
     image:
       repository: linuxserver/calibre-web
-      tag: 0.6.19
+      tag: 2021.12.16
       pullPolicy: IfNotPresent
     env:
       TZ: "${TZ}"
