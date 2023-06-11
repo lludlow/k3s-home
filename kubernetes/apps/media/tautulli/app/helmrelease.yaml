@@ -67,6 +67,7 @@ spec:
         enabled: true
         type: emptyDir
       config-v1:
+        enabled: true
         mountPath: /config-v1
         existingClaim: tautulli-config-v1
     volumeClaimTemplates:
