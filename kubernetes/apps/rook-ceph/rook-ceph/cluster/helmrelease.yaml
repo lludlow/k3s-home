@@ -80,9 +80,9 @@ spec:
           - name: k3s-5
             devices:
               - name: /dev/disk/by-id/nvme-INTEL_SSDPEKNW010T8_BTNH117623RB1P0B
-          - name: k3s-6
-            devices:
-              - name: /dev/disk/by-id/nvme-SPCC_M.2_PCIe_SSD_YTAJ210300562
+#          - name: k3s-6
+#            devices:
+#              - name: /dev/disk/by-id/nvme-SPCC_M.2_PCIe_SSD_YTAJ210300562
     cephBlockPools:
       - name: ceph-blockpool
         spec:
