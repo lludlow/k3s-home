@@ -71,13 +71,6 @@ spec:
         mountPath: /custom-cont-init.d/patch-session-protection.sh
         subPath: patch-session-protection.sh
 
-    resources:
-      requests:
-        cpu: 5m
-        memory: 470M
-      limits:
-        memory: 470M
-
     volumeClaimTemplates:
       - name: config
         mountPath: /config
@@ -89,3 +82,10 @@ spec:
         accessMode: ReadWriteOnce
         size: 1Gi
         storageClass: longhorn
+    
+    resources:
+      requests:
+        cpu: 5m
+        memory: 470M
+      limits:
+        memory: 470M
