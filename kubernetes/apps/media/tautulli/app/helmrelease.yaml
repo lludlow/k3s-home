@@ -66,17 +66,16 @@ spec:
       add-ons:
         enabled: true
         type: emptyDir
+      name: config-v1
+        accessMode: ReadWriteOnce
+        mountPath: /config-v1
+        existingClaim: tautulli-config-v1
     volumeClaimTemplates:
       - name: config
         mountPath: /config
         accessMode: ReadWriteOnce
         size: 5Gi
         storageClass: ceph-block
-      - name: config-v1
-        mountPath: /config-v1
-        accessMode: ReadWriteOnce
-        size: 5Gi
-        storageClass: longhorn-nvme
     resources:
       requests:
         cpu: 10m
