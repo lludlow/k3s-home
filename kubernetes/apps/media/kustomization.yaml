@@ -14,7 +14,7 @@ resources:
   - ./doplarr/ks.yaml
   - ./plex/ks.yaml
   - ./wizarr/ks.yaml
-#  - ./calibre-web/ks.yaml
+  - ./calibre-web/ks.yaml
   - ./calibre/ks.yaml
   - ./readarr/ks.yaml
   - ./config-pvc.yaml
