@@ -18,17 +18,19 @@ spec:
 
   values:
     persistence:
-#      defaultClass: true
-#      defaultFsType: xfs
-#      defaultClassReplicaCount: 2
+      defaultClass: true
+      defaultFsType: xfs
+      defaultClassReplicaCount: 2
       
     defaultSettings:
       defaultReplicaCount: 2
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
       backupTargetCredentialSecret: longhorn-secret
       concurrentAutomaticEngineUpgradePerNodeLimit: 1
+      defaultLonghornStaticStorageClass: longhorn
       createDefaultDiskLabeledNodes: true
       defaultDataLocality: best-effort
+      
     pspEnable: false
 
     ingress:
