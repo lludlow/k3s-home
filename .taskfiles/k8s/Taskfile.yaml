@@ -114,3 +114,101 @@ tasks:
         EOF
       - kubectl -n $NAMESPACE wait --for=condition=ready pod -l volume=$VOLUME
       - kubectl -n $NAMESPACE exec (kubectl get pod -n $NAMESPACE -l volume=$VOLUME -o name) -it debug -- /bin/sh
+
+  copy-volume:
+    desc: Attach 2 volumes to a container for migration, ex. VOLUME1=zigbee2mqtt-config-v1 VOLUME2=zigbee2mqtt-config-v2 NAMESPACE=home task copy-volume
+    interactive: true
+    cmds:
+      - defer: kubectl -n ${NAMESPACE} delete pod copy-${VOLUME1}
+      - |
+        cat <<EOF | kubectl apply -f -
+        kind: Pod
+        apiVersion: v1
+        metadata:
+          name: "copy-${VOLUME1}"
+          namespace: "${NAMESPACE}"
+          labels:
+            volume: "${VOLUME1}"
+        spec:
+          containers:
+            - name: debug
+              image: docker.io/library/alpine:3.15
+              command: ["/bin/sh"]
+              tty: true
+              lifecycle:
+                postStart:
+                  exec:
+                    command:
+                      - /bin/sh
+                      - -c
+                      - apk add --no-cache curl nano rsync openssh openssh-client
+              volumeMounts:
+                - name: data1
+                  mountPath: /data1
+                - name: data2
+                  mountPath: /data2
+          volumes:
+            - name: data1
+              persistentVolumeClaim:
+                claimName: "${VOLUME1}"
+            - name: data2
+              persistentVolumeClaim:
+                claimName: "${VOLUME2}"
+        EOF
+      - kubectl -n $NAMESPACE wait --for=condition=ready pod -l volume=$VOLUME1
+      - kubectl -n $NAMESPACE exec (kubectl get pod -n $NAMESPACE -l volume=$VOLUME1 -o name) -it debug -- /bin/sh
+
+  mount2:
+      desc: Mount 2 PersistantVolumeClaims to a pod temporarily
+      interactive: true
+      vars:
+        claim1: '{{ or .claim1 (fail "PersistentVolumeClaim `claim1` is required") }}'
+        claim2: '{{ or .claim2 (fail "PersistentVolumeClaim `claim1` is required") }}'
+        namespace: '{{.namespace | default "default"}}'
+      cmds:
+        - |
+          kubectl run -n {{.namespace}} debug-{{.claim1}} -i --tty --rm --image=null --privileged --overrides='
+            {
+              "apiVersion": "v1",
+              "spec": {
+                "containers": [
+                  {
+                    "name": "debug",
+                    "image": "ghcr.io/onedr0p/alpine:rolling",
+                    "command": [
+                      "/bin/bash"
+                    ],
+                    "stdin": true,
+                    "stdinOnce": true,
+                    "tty": true,
+                    "volumeMounts": [
+                      {
+                        "name": "volume1",
+                        "mountPath": "/mnt/volume1"
+                      },
+                      {
+                        "name": "volume2",
+                        "mountPath": "/mnt/volume2"
+                      }
+                    ]
+                  }
+                ],
+                "volumes": [
+                  {
+                    "name": "volume1",
+                    "persistentVolumeClaim": {
+                      "claimName": "{{.claim1}}"
+                    }
+                  },  
+                  {
+                    "name": "volume2",
+                    "persistentVolumeClaim": {
+                      "claimName": "{{.claim2}}"
+                    }
+                  }
+                ],
+                "restartPolicy": "Never"
+              }
+            }'
+      preconditions:
+        - kubectl -n {{.namespace}} get pvc {{.claim1}}
