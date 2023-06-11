@@ -72,6 +72,11 @@ spec:
         accessMode: ReadWriteOnce
         size: 5Gi
         storageClass: ceph-block
+      - name: config-v1
+        mountPath: /config-v1
+        accessMode: ReadWriteOnce
+        size: 5Gi
+        storageClass: longhorn-nvme
     resources:
       requests:
         cpu: 10m
