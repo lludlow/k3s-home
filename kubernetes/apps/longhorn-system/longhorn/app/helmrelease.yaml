@@ -18,9 +18,9 @@ spec:
 
   values:
     persistence:
-      defaultClass: true
-      defaultFsType: xfs
-      defaultClassReplicaCount: 2
+#      defaultClass: true
+#      defaultFsType: xfs
+#      defaultClassReplicaCount: 2
       
     defaultSettings:
       defaultReplicaCount: 2
