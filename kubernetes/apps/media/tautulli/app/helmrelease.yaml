@@ -66,8 +66,7 @@ spec:
       add-ons:
         enabled: true
         type: emptyDir
-      name: config-v1
-        accessMode: ReadWriteOnce
+      config-v1:
         mountPath: /config-v1
         existingClaim: tautulli-config-v1
     volumeClaimTemplates:
