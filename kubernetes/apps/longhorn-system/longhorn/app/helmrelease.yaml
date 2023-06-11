@@ -19,14 +19,17 @@ spec:
   values:
     persistence:
       defaultClass: true
-      defaultFsType: ext4
-      defaultClassReplicaCount: 3
+      defaultFsType: xfs
+      defaultClassReplicaCount: 2
+      
     defaultSettings:
-      defaultReplicaCount: 3
+      defaultReplicaCount: 2
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
+      backupTargetCredentialSecret: longhorn-secret
       concurrentAutomaticEngineUpgradePerNodeLimit: 1
-      defaultLonghornStaticStorageClass: longhorn
-      orphanAutoDeletion: true
+      createDefaultDiskLabeledNodes: true
+      defaultDataLocality: best-effort
+    pspEnable: false
 
     ingress:
       enabled: true
@@ -36,9 +39,6 @@ spec:
           10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
         hajimari.io/appName: "Longhorn"
         hajimari.io/icon: mdi:harddisk-plus
-      host:
-        name: &host "longhorn.${SECRET_DOMAIN}"
-        path: /
-      tls:
-        - hosts:
-            - *host
+      tls: true
+      host: "longhorn.${SECRET_DOMAIN}"
+
