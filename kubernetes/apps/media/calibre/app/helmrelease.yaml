@@ -31,7 +31,7 @@ spec:
     # https://hub.docker.com/r/linuxserver/calibre
       repository: lscr.io/linuxserver/calibre
       # https://github.com/linuxserver/docker-calibre/issues/104#issuecomment-1270904811
-      tag: "6.4.0"
+      tag: "6.20.0"
       pullPolicy: IfNotPresent
 
     env:
