@@ -29,7 +29,7 @@ spec:
     defaultSettings:
       defaultReplicaCount: 2
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
-      backupTargetCredentialSecret: longhorn-secret
+      backupTargetCredentialSecret: longhorn-backup-secret
       backupTarget: s3://madk8slonghorn@dummyregion/
       concurrentAutomaticEngineUpgradePerNodeLimit: 1
       defaultLonghornStaticStorageClass: longhorn
