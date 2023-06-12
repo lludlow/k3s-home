@@ -23,9 +23,6 @@ spec:
       defaultClassReplicaCount: 2
       reclaimPolicy: Retain
       diskSelector: nvme
-      recurringJobs:
-        enable: true
-        jobList: '[{"name":"daily", "task":"backup", "cron":"0 6 * * ?", "retain":2,"labels": {"interval":"daily"}}]'
 
     defaultSettings:
       defaultReplicaCount: 2
