@@ -13,4 +13,4 @@ parameters:
   fromBackup: ""
   fsType: "xfs"
   defaultClass: "false"
-  diskSelector: nvme,ssd
+  diskSelector: nvme

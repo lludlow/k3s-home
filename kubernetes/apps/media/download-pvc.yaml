@@ -11,3 +11,5 @@ spec:
     requests:
       storage: 500Gi
   storageClassName: longhorn-single
+
+# No disk replication, this is tmp space and can be lost
