@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./longhorn-single.yaml
   - ./longhorn-ssd.yaml
+  - ./longhorn-static.yaml
