@@ -82,6 +82,5 @@ spec:
         mountPath: /data
         accessMode: ReadWriteOnce
         size: 512Mi
-        storageClass: ceph-block
-        storageClassName: longhorn
+        storageClass: longhorn
         volumeName: mosquitto-data-0
