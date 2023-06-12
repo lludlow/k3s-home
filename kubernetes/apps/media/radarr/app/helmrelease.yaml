@@ -101,6 +101,11 @@ spec:
         accessMode: ReadWriteOnce
         size: 15Gi
         storageClass: ceph-block
+      - name: config-v1
+        mountPath: /config1
+        accessMode: ReadWriteOnce
+        size: 15Gi
+        storageClass: longhorn
 
     persistence:
       media:
