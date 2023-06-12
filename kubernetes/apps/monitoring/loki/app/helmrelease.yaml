@@ -30,8 +30,7 @@ spec:
   dependsOn:
     - name: local-path-provisioner
       namespace: kube-system
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+
   values:
     loki:
       structuredConfig:
@@ -141,7 +140,7 @@ spec:
     read:
       persistence:
         size: 20Gi
-        storageClass: ceph-block
+        storageClass: local-path
       extraVolumeMounts:
         - name: rules
           mountPath: /rules
@@ -152,12 +151,12 @@ spec:
     write:
       persistence:
         size: 20Gi
-        storageClass: ceph-block
+        storageClass: local-path
 
     backend:
       persistence:
         size: 20Gi
-        storageClass: ceph-block
+        storageClass: local-path
       extraVolumeMounts:
         - name: rules
           mountPath: /rules/fake
