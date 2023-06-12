@@ -5,6 +5,7 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
+  - ./download-pvc.yaml
 #  - ./overseerr/ks.yaml
 #  - ./prowlarr/ks.yaml
 #  - ./tautulli/ks.yaml
