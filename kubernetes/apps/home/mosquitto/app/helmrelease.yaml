@@ -69,6 +69,9 @@ spec:
         enabled: true
         type: emptyDir
         mountPath: /mosquitto/external_config
+      data:
+        mountPath: /data
+        existingClaim: mosquitto-data-longhorn
 
     resources:
       requests:
@@ -76,11 +79,3 @@ spec:
         memory: 10M
       limits:
         memory: 10M
-
-    volumeClaimTemplates:
-      - name: data
-        mountPath: /data
-        accessMode: ReadWriteOnce
-        size: 512Mi
-        storageClass: longhorn
-        volumeName: mosquitto-data-0

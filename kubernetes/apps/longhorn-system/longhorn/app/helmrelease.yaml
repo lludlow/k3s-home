@@ -23,6 +23,12 @@ spec:
       defaultClassReplicaCount: 2
       reclaimPolicy: Retain
       diskSelector: nvme
+      recurringJobSelector: '[
+      {
+        "name":"daily",
+        "isGroup":true,
+      }
+      ]'
 
     defaultSettings:
       defaultReplicaCount: 2

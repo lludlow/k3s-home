@@ -14,3 +14,9 @@ parameters:
   fsType: "xfs"
   defaultClass: "false"
   diskSelector: ssd
+  recurringJobSelector: '[
+  {
+    "name":"daily",
+    "isGroup":true,
+  }
+  ]'
