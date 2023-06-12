@@ -70,6 +70,7 @@ spec:
         type: emptyDir
         mountPath: /mosquitto/external_config
       data:
+        enabled: true
         mountPath: /data
         existingClaim: mosquitto-data-longhorn
 
