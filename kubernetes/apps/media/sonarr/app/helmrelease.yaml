@@ -91,13 +91,13 @@ spec:
       supplementalGroups: [10000]
 
     volumeClaimTemplates:
-      - name: config
-        mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 10Gi
-        storageClass: ceph-block
+#      - name: config
+#        mountPath: /config
+#        accessMode: ReadWriteOnce
+#        size: 10Gi
+#        storageClass: ceph-block
       - name: config-v1
-        mountPath: /config1
+        mountPath: /config
         accessMode: ReadWriteOnce
         size: 10Gi
         storageClass: longhorn
@@ -111,7 +111,7 @@ spec:
         mountPath: /media
       download:
         enabled: true
-        existingClaim: downloads
+        existingClaim: download
         mountPath: /download
         
     nodeSelector:

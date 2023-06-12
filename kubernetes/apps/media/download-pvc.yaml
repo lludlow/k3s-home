@@ -10,4 +10,8 @@ spec:
   resources:
     requests:
       storage: 500Gi
-  storageClassName: longhorn
+  storageClassName: longhorn-single
+
+#      config:
+#        enabled: true
+#        existingClaim: download  

@@ -94,7 +94,7 @@ spec:
         mountPath: /books
       download:
         enabled: true
-        existingClaim: downloads
+        existingClaim: download
         mountPath: /download
       cache:
         enabled: true

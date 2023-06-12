@@ -76,13 +76,13 @@ spec:
         memory: 101M
 
     volumeClaimTemplates:
-      - name: config
-        mountPath: /app/config
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        storageClass: ceph-block
+#      - name: config
+#        mountPath: /app/config
+#        accessMode: ReadWriteOnce
+#        size: 1Gi
+#        storageClass: ceph-block
       - name: config-v1
-        mountPath: /app/config1
+        mountPath: /app/config
         accessMode: ReadWriteOnce
         size: 1Gi
         storageClass: longhorn
