@@ -30,13 +30,6 @@ spec:
       namespace: rook-ceph
 
   values:
-    initContainers:
-      01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:14.8
-        imagePullPolicy: IfNotPresent
-        envFrom: &envFrom
-          - secretRef:
-              name: prowlarr-secret
               
     controller:
       type: statefulset
@@ -49,7 +42,7 @@ spec:
       pullPolicy: IfNotPresent
     hostname: prowlarr
     env:
-      TZ: "${TIMEZONE}"
+      TZ: "${TZ}"
       PROWLARR__INSTANCE_NAME: Prowlarr
       PROWLARR__PORT: &port 80
       PROWLARR__LOG_LEVEL: info
