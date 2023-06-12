@@ -5,3 +5,5 @@ resources:
   - ./longhorn-single.yaml
   - ./longhorn-ssd.yaml
   - ./longhorn-static.yaml
+  - ./longhorn-norpl.yaml
+  - ./longhorn-fast.yaml

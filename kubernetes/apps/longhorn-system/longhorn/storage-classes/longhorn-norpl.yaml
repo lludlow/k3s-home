@@ -2,7 +2,7 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-  name: longhorn-single
+  name: longhorn-norpl
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 reclaimPolicy: Delete
@@ -14,3 +14,4 @@ parameters:
   fsType: "xfs"
   defaultClass: "false"
   diskSelector: nvme
+  nodeSelector: 10gb
