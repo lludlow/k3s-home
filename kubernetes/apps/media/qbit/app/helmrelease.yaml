@@ -1,0 +1,97 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: qbittorrent
+  namespace: media
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+
+  values:
+    fullNameOverride: qbittorrent
+    controller:
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
+
+    image:
+      repository: ghcr.io/onedr0p/qbittorrent
+      tag: 4.5.3@sha256:5f97e1e998a498cc27ba08abcdad5be61bd396f833157c6b6c1f3d672915f2fa
+    env:
+      QBITTORRENT__PORT: &port 80
+      QBITTORRENT__BT_PORT: &port-bt 55633
+
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          hajimari.io/icon: mdi:filmstrip
+        hosts:
+          - host: &host qb.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: OnRootMismatch
+      supplementalGroups: [10000]
+
+    podAnnotations:
+      setGateway: "true"
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: qbittorrent-config-v1
+      media:
+        enabled: true
+        type: nfs
+        server: ${NAS}
+        path: /volume1/video
+        mountPath: /media
+      download:
+        enabled: true
+        existingClaim: download
+        mountPath: /download
+      torrents:
+        enabled: true
+        type: nfs
+        server: ${NAS}
+        path: /volume1/download
+        mountPath: /torrents
+
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
+      
