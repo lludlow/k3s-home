@@ -45,6 +45,11 @@ spec:
         ports:
           http:
             port: *port
+          bittorrent:
+            enabled: true
+            primary: true
+            protocol: TCP
+            port: 49969
 
     ingress:
       main:
