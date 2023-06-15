@@ -38,6 +38,14 @@ spec:
       repository: ghcr.io/koush/scrypted
       tag: 18-bullseye-full-v0.23.0
 
+    podAnnotations:
+      k8s.v1.cni.cncf.io/networks: |
+        [{
+          "name":"multus-trusted",
+          "namespace": "network",
+          "ips": ["192.168.10.52/24"]
+        }]
+
     env:
       TZ: ${TZ}
 
