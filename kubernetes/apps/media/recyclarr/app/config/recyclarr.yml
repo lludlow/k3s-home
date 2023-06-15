@@ -23,7 +23,7 @@ sonarr:
           - c1a25cd67b5d2e08287c957b1eb903ec # DTS-ES
           - 5964f2a8b3be407d083498e4459d05d0 # DTS
         quality_profiles:
-          - name: Web-1080p
+          - name: Any
             reset_unmatched_scores: true
 
       # Audio Advanced #2
@@ -34,7 +34,7 @@ sonarr:
           - a50b8a0c62274a7c38b09a9619ba9d86 # AAC
           - dbe00161b08a25ac6154c55f95e6318d # DD
         quality_profiles:
-          - name: Web-1080p
+          - name: Any
             reset_unmatched_scores: true
 
       # HDR Formats
@@ -50,7 +50,7 @@ sonarr:
           - 2a7e3be05d3861d6df7171ec74cad727 # PQ
           - 17e889ce13117940092308f48b48b45b # HLG
         quality_profiles:
-          - name: Web-1080p
+          - name: Any
             reset_unmatched_scores: true
 
       # Series Versions
@@ -58,7 +58,7 @@ sonarr:
           - 3a4127d8aa781b44120d907f2cd62627 # Hybrid
           - b735f09d3c025cbb7d75a5d38325b73b # Remaster
         quality_profiles:
-          - name: Web-1080p
+          - name: Any
             reset_unmatched_scores: true
 
       # Unwanted
@@ -67,7 +67,7 @@ sonarr:
           - 9c11cd3f07101cdba90a2d81cf0e56b4 # LQ
           - 47435ece6b99a0b477caf360e79ba0bb # x265 (HD)
         quality_profiles:
-          - name: Web-1080p
+          - name: Any
             reset_unmatched_scores: true
 
       # HQ Source Groups
@@ -77,7 +77,7 @@ sonarr:
           - d84935abd3f8556dcd51d4f27e22d0a6 # WEB Tier 03
           - d0c516558625b04b363fa6c5c2c7cfd4 # WEB Scene
         quality_profiles:
-          - name: Web-1080p
+          - name: Any
             reset_unmatched_scores: true
 
       # Streaming Services
@@ -102,7 +102,7 @@ sonarr:
           - 0455d6519a550dbf648c97b56e7231d2 # SALTO
           - b0d6195c23ae254932da00512db7e8a8 # RTBF
         quality_profiles:
-          - name: Web-1080p
+          - name: Any
             reset_unmatched_scores: true
 
       # Misc
@@ -111,7 +111,7 @@ sonarr:
           - eb3d5cc0a2be0db205fb823640db6a3c # Repack v2
           - 44e7c4de10ae50265753082e5dc76047 # Repack v3
         quality_profiles:
-          - name: Web-1080p
+          - name: Any
             reset_unmatched_scores: true
 
       # Optional
@@ -124,7 +124,7 @@ sonarr:
           - 06d66ab109d4d2eddb2794d21526d140 # Retags
           - 9b64dff695c2115facf1b6ea59c9bd07 # x265 (no HDR/DV)
         quality_profiles:
-          - name: Web-1080p
+          - name: Any
             reset_unmatched_scores: true
 
 radarr:
@@ -149,7 +149,7 @@ radarr:
           - f9f847ac70a0af62ea4a08280b859636 # DTS-ES
           - 1c1a4c5e823891c75bc50380a6866f73 # DTS
         quality_profiles:
-          - name: Remux-1080p
+          - name: Me Likes
             reset_unmatched_scores: true
 
       # Audio Advanced #2
@@ -160,7 +160,7 @@ radarr:
           - 240770601cc226190c367ef59aba7463 # AAC
           - c2998bd0d90ed5621d8df281e839436e # DD
         quality_profiles:
-          - name: Remux-1080p
+          - name: Me Likes
             reset_unmatched_scores: true
 
       # HDR Formats
@@ -176,7 +176,7 @@ radarr:
           - 08d6d8834ad9ec87b1dc7ec8148e7a1f # PQ
           - 9364dd386c9b4a1100dde8264690add7 # HLG
         quality_profiles:
-          - name: Remux-1080p
+          - name: Me Likes
             reset_unmatched_scores: true
 
       # Movie Versions
@@ -191,7 +191,7 @@ radarr:
           - 9f6cbff8cfe4ebbc1bde14c7b7bec0de # IMAX Enhanced
           - 09d9dd29a0fc958f9796e65c2a8864b4 # Open Matte
         quality_profiles:
-          - name: Remux-1080p
+          - name: Me Likes
             reset_unmatched_scores: true
 
       # Unwanted
@@ -201,7 +201,7 @@ radarr:
           - b8cd450cbfa689c0259a01d9e29ba3d6 # 3D
           - dc98083864ea246d05a42df0d05f81cc # x265 (HD)
         quality_profiles:
-          - name: Remux-1080p
+          - name: Me Likes
             reset_unmatched_scores: true
 
       # HQ Release Groups
@@ -217,7 +217,7 @@ radarr:
           - 403816d65392c79236dcb6dd591aeda4 # WEB Tier 02
           - af94e0fe497124d1f9ce732069ec8c3b # WEB Tier 03
         quality_profiles:
-          - name: Remux-1080p
+          - name: Me Likes
             reset_unmatched_scores: true
 
       # Streaming Services
@@ -234,7 +234,7 @@ radarr:
           - bf7e73dd1d85b12cc527dc619761c840 # PATHE
           - cc5e51a9e85a6296ceefe097a77f12f4 # BCORE
         quality_profiles:
-          - name: Remux-1080p
+          - name: Me Likes
             score: 1
             reset_unmatched_scores: true
 
@@ -243,7 +243,7 @@ radarr:
           - e7718d7a3ce595f289bfee26adc178f5 # Repack/Proper
           - ae43b294509409a6a13919dedd4764c4 # Repack2
         quality_profiles:
-          - name: Remux-1080p
+          - name: Me Likes
             reset_unmatched_scores: true
 
       # Optional
@@ -257,5 +257,5 @@ radarr:
           - 5c44f52a8714fdd79bb4d98e2673be1f # Retags
           - 839bea857ed2c0a8e084f3cbdbd65ecb # x265 (no HDR/DV)
         quality_profiles:
-          - name: Remux-1080p
+          - name: Me Likes
             reset_unmatched_scores: true
