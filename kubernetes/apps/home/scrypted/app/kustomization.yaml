@@ -5,4 +5,4 @@ kind: Kustomization
 namespace: home
 resources:
   - ./helmrelease.yaml
-
+  - ./multus.yaml
