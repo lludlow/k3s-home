@@ -37,9 +37,9 @@ spec:
       tag: 4.4.1
     env:
       TZ: America/New_York
-    envFrom:
-      - secretRef:
-          name: recyclarr-secret
+      RADARR_API_KEY: ${SECRET_RADARR_KEY}
+      SONARR_API_KEY: ${SECRET_SONARR_KEY}
+
     service:
       main:
         enabled: false
