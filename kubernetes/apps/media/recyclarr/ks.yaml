@@ -6,8 +6,6 @@ metadata:
   name: cluster-apps-recyclarr
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-external-secrets-stores
   path: ./kubernetes/apps/media/recyclarr/app
   prune: true
   sourceRef:
