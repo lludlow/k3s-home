@@ -29,4 +29,5 @@ resources:
   - ./node-feature-discovery.yaml
   - ./kyverno-charts.yaml
   - ./longhorn-charts.yaml
+  - ./angelnu.yaml
   
