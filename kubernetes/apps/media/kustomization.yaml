@@ -19,3 +19,4 @@ resources:
   - ./calibre/ks.yaml
   - ./readarr/ks.yaml
   - ./qbit/ks.yaml
+  - ./recyclarr/ks.yaml
