@@ -4,9 +4,8 @@ kind: Service
 metadata:
   name: &app postgres-lb
   namespace: database
-  labels:
-    app.kubernetes.io/name: *app
-    app.kubernetes.io/instance: *app
+  annotations:
+    coredns.io/hostname: postgres.${SECRET_DOMAIN}
 
 spec:
   type: LoadBalancer
