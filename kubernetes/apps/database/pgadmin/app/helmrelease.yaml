@@ -58,18 +58,13 @@ spec:
         mountPath: "/var/lib/pgadmin"
         size: 1Gi
         storageClass: longhorn-fast
-      oauthconfig:
-        enabled: true
-        type: configMap
-        name: pgadmin-oauth-configmap
-        subPath: config_local.py
-        mountPath: /pgadmin4/config_local.py
-        readOnly: true
 
     ingress:
       main:
         enabled: true
         ingressClassName: nginx
+        annotations:
+          hajimari.io/icon: mdi:database-cog
         hosts:
           - host: &host "pgadmin.${SECRET_DOMAIN}"
             paths:
