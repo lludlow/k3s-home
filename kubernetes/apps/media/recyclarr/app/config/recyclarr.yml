@@ -131,7 +131,7 @@ radarr:
   standard:
     base_url: http://radarr.media.svc.cluster.local
     api_key: !env_var RADARR_API_KEY
-      delete_old_custom_formats: true
+    delete_old_custom_formats: true
 
     quality_definition:
       type: movie
