@@ -4,24 +4,26 @@ kind: Cluster
 metadata:
   name: postgres
   namespace: database
-
+  annotations:
+    kyverno.io/ignore: "true"
 spec:
   instances: 3
-  
-  imageName: ghcr.io/cloudnative-pg/postgresql:15.3
-
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.7
   primaryUpdateStrategy: unsupervised
-
   storage:
     size: 20Gi
-    storageClass: longhorn-fast
-
+    storageClass: local-path
   superuserSecret:
-    name: postgres-superuser
-
+    name: cloudnative-pg-secret
+  # bootstrap:
+  #   recovery:
+  #     source: &previous-cluster postgres-v2
+  postgresql:
+    parameters:
+      max_connections: "600"
+      shared_buffers: 512MB
   monitoring:
     enablePodMonitor: true
-
   backup:
     retentionPolicy: 30d
     barmanObjectStore:
@@ -29,69 +31,28 @@ spec:
         compression: bzip2
         maxParallel: 8
       destinationPath: s3://postgresql/
-      endpointURL: https://${NAS}:9000
-      serverName: postgres-v1
+      endpointURL: http://${NAS}:9000
+      serverName: postgres
       s3Credentials:
         accessKeyId:
-          name: postgres-minio
-          key: MINIO_ACCESS_KEY
+          name: cloudnative-pg-secret
+          key: aws-access-key-id
         secretAccessKey:
-          name: postgres-minio
-          key: MINIO_SECRET_KEY
-
-  bootstrap:
-    initdb:
-      database: app
-      owner: app
-      secret:
-        name: postgres-superuser
-#  # use this to recover a net-new cluster from a backup
-#    # ## for initial setup
-#     initdb:
-#       # set up 'default' db/owner
-#      database: default
-#      owner: username
-#      secret:
-#         name: <app>-user-secret
-#    ## Alternative bootstrap method: start from a backup  
-#    recovery:
-#      source: postgres-backup
-
-    # # use this to 'migrate' from an existing cnpg cluster (e.g. "cluster-pg14") to the new cluster
-    # initdb:
-    #   import:
-    #     type: monolith
-    #     databases:
-    #       - "*"
-    #     roles:
-    #       - "*"
-    #     source:
-    #       externalCluster: cluster-pg14
-
-  externalClusters:
-#    # this represents the s3 backup to restore from. *nota-bene: the backup must be the same major version of the target cluster
-#    - name: postgres-backup
-#      barmanObjectStore:
-#        wal:
-#          compression: bzip2
-#          maxParallel: 8
-#        destinationPath: s3://postgresql/
-#        endpointURL: https://${NAS}:9000
-#        s3Credentials:
-#          accessKeyId:
-#            name: postgres-minio
-#            key: MINIO_ACCESS_KEY
-#          secretAccessKey:
-#            name: postgres-minio
-#            key: MINIO_SECRET_KEY
-
-    # # this represents an existing cnpg cluster to migrate from (e.g. upgrading from postgres v14 to postgres v15)
-    # - name: cluster-pg14
-    #   connectionParameters:
-    #     host: postgres-rw.default.svc.cluster.local
-    #     user: postgres
-    #     dbname: postgres
-    #     sslmode: require
-    #   password:
-    #     name: cloudnative-pg-secret
-    #     key: password
+          name: cloudnative-pg-secret
+          key: aws-secret-access-key
+  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  # externalClusters:
+  #   - name: *previous-cluster
+  #     barmanObjectStore:
+  #       wal:
+  #         compression: bzip2
+  #         maxParallel: 8
+  #       destinationPath: s3://postgresql/
+  #       endpointURL: http://s3.${SECRET_DOMAIN}
+  #       s3Credentials:
+  #         accessKeyId:
+  #           name: cloudnative-pg-secret
+  #           key: aws-access-key-id
+  #         secretAccessKey:
+  #           name: cloudnative-pg-secret
+  #           key: aws-secret-access-key
