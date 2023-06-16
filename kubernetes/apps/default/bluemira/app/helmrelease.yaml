@@ -29,6 +29,12 @@ spec:
       repository: ghcr.io/madbuda/sensor
       tag: 1
 
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+
     podAnnotations:
       k8s.v1.cni.cncf.io/networks: |
         [{
@@ -40,9 +46,9 @@ spec:
     securityContext:
       privileged: true
 
-    volumeClaimTemplates:
-      - name: /var/lib/orchestrator
-        mountPath: /config
-        accessMode: ReadWriteOnce
+    persistence:
+      config:
+        enabled: true
+        mountPath: "/var/lib/orchestrator"
         size: 20Gi
         storageClass: longhorn-fast
