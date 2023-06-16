@@ -36,10 +36,10 @@ spec:
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
-          key: aws-access-key-id
+          key: AWS_ACCESS_KEY
         secretAccessKey:
           name: cloudnative-pg-secret
-          key: aws-secret-access-key
+          key: AWS_SECRET_ACCESS_KEY
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   # externalClusters:
   #   - name: *previous-cluster
