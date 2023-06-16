@@ -203,10 +203,8 @@ spec:
                   storage: 20Gi
 
         additionalScrapeConfigs:
-          - job_name: node-exporter
-            static_configs:
-              - targets: ["192.168.10.9:9100"] #frank
           - job_name: minio
             metrics_path: /minio/v2/metrics/cluster
+            scheme: http
             static_configs:
-              - targets: ["192.168.10.9:9000"] # frank
+              - targets: ['192.168.10.10:9000']
