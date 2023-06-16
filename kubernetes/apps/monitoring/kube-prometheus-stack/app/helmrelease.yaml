@@ -204,7 +204,7 @@ spec:
 
         additionalScrapeConfigs:
           - job_name: minio
-            bearer_token: ${MINIO_TOKEN}
+            bearer_token: ${MINIO_TOKEN} ## token from synology minio services
             metrics_path: /minio/v2/metrics/cluster
             scheme: http
             static_configs:
