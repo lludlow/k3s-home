@@ -30,4 +30,5 @@ resources:
   - ./kyverno-charts.yaml
   - ./longhorn-charts.yaml
   - ./angelnu.yaml
+  - ./cloudnative-pg.yaml
   
