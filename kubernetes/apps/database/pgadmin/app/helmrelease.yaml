@@ -31,6 +31,7 @@ spec:
     controller:
       replicas: 1
       strategy: Recreate
+      type: statefulset
       annotations:
         reloader.stakater.com/auto: "true"
     strategy:

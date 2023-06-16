@@ -39,7 +39,12 @@ spec:
           name: postgres-minio
           key: MINIO_SECRET_KEY
 
-#  bootstrap:
+  bootstrap:
+    initdb:
+      database: app
+      owner: app
+      secret:
+        name: postgres-superuser
 #  # use this to recover a net-new cluster from a backup
 #    # ## for initial setup
 #     initdb:
