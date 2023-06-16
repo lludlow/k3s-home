@@ -204,6 +204,7 @@ spec:
 
         additionalScrapeConfigs:
           - job_name: minio
+            bearer_token: ${MINIO_TOKEN}
             metrics_path: /minio/v2/metrics/cluster
             scheme: http
             static_configs:
