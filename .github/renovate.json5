@@ -20,6 +20,7 @@
   "username": "madbuda",
   "gitAuthor": "madbuda <larry@subether.me>",
   "repositories": ["madbuda/k3s-home"],
+  "ignorePaths": ["kubernetes/apps/media/calibre-web/**"],
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "suppressNotifications": ["prIgnoreNotification"],
