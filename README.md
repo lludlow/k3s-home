@@ -474,9 +474,7 @@ The benefits of a public repository include:
    stringData:
      # 3a. Contents of github-deploy-key
      identity: |
-       -----BEGIN OPENSSH PRIVATE KEY-----
-           ...
-       -----END OPENSSH PRIVATE KEY-----
+
      # 3b. Output of curl --silent https://api.github.com/meta | jq --raw-output '"github.com "+.ssh_keys[]'
      known_hosts: |
        github.com ssh-ed25519 ...
