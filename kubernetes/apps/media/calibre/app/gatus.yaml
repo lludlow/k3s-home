@@ -2,16 +2,16 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: plex-gatus-ep
+  name: calibre-gatus-ep
   namespace: media
   labels:
     gatus.io/enabled: "true"
 data:
   config.yaml: |
     endpoints:
-      - name: plex
+      - name: calibre
         group: external
-        url: https://plex.${SECRET_EXTERNAL_DOMAIN2}/web/index.html
+        url: https://calibre.${SECRET_DOMAIN}
         interval: 1m
         client:
           dns-resolver: tcp://45.90.28.101:53

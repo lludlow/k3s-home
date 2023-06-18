@@ -28,7 +28,7 @@ endpoints:
     url: https://status.madbuda.me
     interval: 1m
     client:
-      dns-resolver: tcp://1.1.1.1:53
+      dns-resolver: tcp://45.90.28.101:53
     conditions:
       - "[STATUS] == 200"
     alerts:
