@@ -18,11 +18,6 @@ _... managed with Flux and Renovate_ :robot:
 [![renovate](https://img.shields.io/badge/renovate-enabled-brightgreen?style=for-the-badge&logo=renovatebot&logoColor=white)](https://github.com/renovatebot/renovate)
 </div>
 
-<div align="center">
-![Home Internet](https://status.madbuda.me/api/badge/7/status?style=for-the-badge&label=Home%20Internet)
-![Plex](https://status.madbuda.me/api/badge/6/status?style=for-the-badge&label=Plex)
-![Home Assistant](https://status.madbuda.me/api/badge/15/status?style=for-the-badge&label=Home%20Assistant)
----
 
 ## :book:&nbsp; Overview
 
@@ -41,6 +36,8 @@ This is home to my personal Kubernetes cluster. [Flux](https://github.com/fluxcd
 | 3 x Lenovo M900                   | i5-6500T     | 8 GB | Ubuntu 22.04  | 1TB SPCC SSD                         |  I219-LM 1GBe  |
 | 1 x Intel NUC7i7BNH                    | i7-7567U     | 8 GB | Ubuntu 22.04  | 250GB SanDisk SSD                         |  1GBe  |
 | 1 x Intel NUC7i7BNH                    | i7-7567U     | 8 GB | HASSIO  | 250GB SanDisk SSD                         |  1GBe  |
+| 1 x Oracle E2.1.Micro                    | x86     | 4 GB | Ubuntu 20.04   | 100GB                         |    |
+| 1 x Oracle A1.Flex                    | 4 ARM cores     | 24 GB | Ubuntu 20.04   | 100GB                         |    |
 
 
 
@@ -52,7 +49,7 @@ I have a 2 gig symmetric Fiber with a /29 static IP block (only 5 usable as teh 
 |---------------------------------------------|--------------------------------|
 | 2 x SMART1500LCD 1500VA                     | 3000VA for Servers and Storage |
 | APC BE600M1 UPS                             | 600VA for UDM, GPON, and HA    |
-| Unifi Dream Machine SE                      | Router / DVR                   |
+| Unifi Dream Machine SE                      | Router / DVR / VPN to Oracle Cloud |
 | USW Enterprise 8 POE                        | 2.5 GB PoE switch              |
 | MikroTik CRS317-1G-16S+                     | 10GB Switch                    |
 | Qnap QSW-M408S                              | Office Switch                  |
