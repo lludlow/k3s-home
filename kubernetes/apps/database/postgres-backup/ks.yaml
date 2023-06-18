@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: "./kubernetes/cluster-0/apps/database/postgres-backup/app"
+  path: "./kubernetes/apps/database/postgres-backup/app"
   prune: true
   sourceRef:
     kind: GitRepository
