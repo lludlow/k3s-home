@@ -21,13 +21,14 @@ kind: Ingress
 metadata:
   name: ha
   namespace: network
-  annotations:
-    external-dns.alpha.kubernetes.io/target: "frodo.${SECRET_EXTERNAL_DOMAIN}"
   labels:
     app.kubernetes.io/name: ha
     app.kubernetes.io/instance: ha
 spec:
   ingressClassName: nginx
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "vip2.${SECRET_EXTERNAL_DOMAIN}"
+    hajimari.io/icon: video-input-antenna
   rules:
     - host: &host ha.${SECRET_EXTERNAL_DOMAIN}
       http:
