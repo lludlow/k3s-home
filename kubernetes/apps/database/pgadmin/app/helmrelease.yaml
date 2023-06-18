@@ -39,6 +39,17 @@ spec:
     env:
       PGADMIN_DEFAULT_EMAIL: ${EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${POSTGRES_ADMIN_PASSWORD}
+      PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: "False"
+
+    initContainers:
+      volume-permissions:
+        image: dpage/pgadmin4:7.0
+        command: ["/bin/chown", "-R", "5050:5050", "/var/lib/pgadmin"]
+        volumeMounts:
+          - name: config
+            mountPath: /var/lib/pgadmin
+        securityContext:
+          runAsUser: 0
 
     service:
       main:
@@ -73,4 +84,3 @@ spec:
         tls:
           - hosts:
               - *host
-
