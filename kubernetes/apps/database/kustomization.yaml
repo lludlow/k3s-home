@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./pgadmin/ks.yaml
+  - ./zalando-postgres
