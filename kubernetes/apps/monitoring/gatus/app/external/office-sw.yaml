@@ -11,7 +11,7 @@ data:
     endpoints:
       - name: office_switch
         group: infra
-        url: icmp://192.168.10.6
+        url: "icmp://192.168.10.6"
         interval: 1m
         conditions:
           - "[CONNECTED] == true"

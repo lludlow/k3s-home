@@ -11,7 +11,7 @@ data:
     endpoints:
       - name: nas
         group: infra
-        url: icmp://${NAS}
+        url: "icmp://${NAS}"
         interval: 1m
         conditions:
           - "[CONNECTED] == true"

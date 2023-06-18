@@ -11,7 +11,7 @@ data:
     endpoints:
       - name: domain_expiration_madhouse
         group: domains
-        url: "https://madhouse.me
+        url: "https://madhouse.me"
         interval: 1h
         conditions:
           - "[DOMAIN_EXPIRATION] > 720h"

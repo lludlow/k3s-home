@@ -11,7 +11,7 @@ data:
     endpoints:
       - name: edge_switch
         group: infra
-        url: icmp://192.168.10.7
+        url: "icmp://192.168.10.7"
         interval: 1m
         conditions:
           - "[CONNECTED] == true"

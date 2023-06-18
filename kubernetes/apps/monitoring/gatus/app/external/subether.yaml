@@ -11,7 +11,7 @@ data:
     endpoints:
       - name: domain_expiration_subether
         group: domains
-        url: "https://subether.me
+        url: "https://subether.me"
         interval: 1h
         conditions:
           - "[DOMAIN_EXPIRATION] > 720h"
