@@ -43,7 +43,7 @@ This is home to my personal Kubernetes cluster. [Flux](https://github.com/fluxcd
 
 ### Networking/Other
 
-I have a 2 gig symmetric Fiber with a /29 static IP block (only 5 usable as teh gateway uses 1)
+I have a 2 gig symmetric Fiber with a /29 static IP block (only 5 usable as the gateway uses 1)
 
 | Device                                      | Details                        |
 |---------------------------------------------|--------------------------------|
