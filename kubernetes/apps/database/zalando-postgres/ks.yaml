@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: "./kubernetes//apps/database/zalando-postgres/cluster"
+  path: "./kubernetes/apps/database/zalando-postgres/cluster"
   prune: true
   sourceRef:
     kind: GitRepository
