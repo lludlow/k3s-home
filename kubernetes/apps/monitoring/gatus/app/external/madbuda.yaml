@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: madbuda-domain-gatus-ep
+  namespace: networking
+  labels:
+    gatus.io/enabled: "true"
+data:
+  config.yaml: |
+    endpoints:
+      - name: domain_expiration_madbuda
+        group: domains
+        url: "https://madbuda.me
+        interval: 1h
+        conditions:
+          - "[DOMAIN_EXPIRATION] > 720h"
+        alerts:
+          - type: pushover
