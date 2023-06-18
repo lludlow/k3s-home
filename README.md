@@ -16,14 +16,14 @@ _... managed with Flux and Renovate_ :robot:
 [![Release](https://img.shields.io/github/v/release/madbuda/k3s-home?style=for-the-badge)](https://github.com/madbuda/k3s-home/releases 'Repo releases')\
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=for-the-badge)](https://github.com/pre-commit/pre-commit)
 [![renovate](https://img.shields.io/badge/renovate-enabled-brightgreen?style=for-the-badge&logo=renovatebot&logoColor=white)](https://github.com/renovatebot/renovate)
-[![Lines of code](https://img.shields.io/tokei/lines/github/madbuda/k3s-home?style=for-the-badge&color=brightgreen&label=lines&logo=codefactor&logoColor=white)](https://github.com/madbuda/k3s-home/graphs/contributors)
+[![Lines of code](https://tokei.rs/b1/github/madbuda/k3s-home?style=for-the-badge&color=brightgreen&label=lines&logo=codefactor&logoColor=white)](https://github.com/madbuda/k3s-home)
 
 </div>
 
 <div align="center">
-![Home Internet](https://status.madbuda.me/api/badge/7/status?style=for-the-badge&label=Home%20Internet)
-![Plex](https://status.madbuda.me/api/badge/6/status?style=for-the-badge&label=Plex)
-![Home Assistant](https://status.madbuda.me/api/badge/15/status?style=for-the-badge&label=Home%20Assistant)
+[![Home Internet](https://status.madbuda.me/api/badge/7/status?style=for-the-badge&label=Home%20Internet)
+[![Plex](https://status.madbuda.me/api/badge/6/status?style=for-the-badge&label=Plex)
+[![Home Assistant](https://status.madbuda.me/api/badge/15/status?style=for-the-badge&label=Home%20Assistant)
 ---
 
 ## :book:&nbsp; Overview
