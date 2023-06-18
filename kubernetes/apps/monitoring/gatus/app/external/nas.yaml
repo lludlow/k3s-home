@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nas-gatus-ep
+  namespace: networking
+  labels:
+    gatus.io/enabled: "true"
+data:
+  config.yaml: |
+    endpoints:
+      - name: nas
+        group: internal
+        url: https://${NAS}:5000/#/signin
+        interval: 1m
+        client:
+          insecure: true
+          ignore-redirect: false
+          timeout: 10s
+        conditions:
+          - "[STATUS] == 200"
+        alerts:
+          - type: pushover
