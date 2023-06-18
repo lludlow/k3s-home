@@ -10,7 +10,7 @@ data:
   config.yaml: |
     endpoints:
       - name: qbittorrent
-        group: external
+        group: internal
         url: https://qb.${SECRET_DOMAIN}
         interval: 1m
         client:

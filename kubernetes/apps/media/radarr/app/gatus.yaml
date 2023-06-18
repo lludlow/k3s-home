@@ -10,7 +10,7 @@ data:
   config.yaml: |
     endpoints:
       - name: radarr
-        group: external
+        group: media
         url: https://radarr.${SECRET_DOMAIN}
         interval: 1m
         client:

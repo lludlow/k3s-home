@@ -10,7 +10,7 @@ data:
   config.yaml: |
     endpoints:
       - name: readarr
-        group: external
+        group: media
         url: https://readarr.${SECRET_DOMAIN}
         interval: 1m
         client:

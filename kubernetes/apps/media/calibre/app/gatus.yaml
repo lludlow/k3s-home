@@ -10,7 +10,7 @@ data:
   config.yaml: |
     endpoints:
       - name: calibre
-        group: external
+        group: internal
         url: https://calibre.${SECRET_DOMAIN}
         interval: 1m
         client:

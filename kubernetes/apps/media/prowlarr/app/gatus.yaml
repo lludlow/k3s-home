@@ -10,7 +10,7 @@ data:
   config.yaml: |
     endpoints:
       - name: prowlarr
-        group: external
+        group: media
         url: https://prowlarr.${SECRET_DOMAIN}
         interval: 1m
         client:

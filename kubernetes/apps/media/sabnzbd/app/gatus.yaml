@@ -10,7 +10,7 @@ data:
   config.yaml: |
     endpoints:
       - name: sabnzbd
-        group: external
+        group: internal
         url: https://sabnzbd.${SECRET_DOMAIN}
         interval: 1m
         client:
