@@ -11,13 +11,9 @@ data:
     endpoints:
       - name: nas
         group: internal
-        url: https://${NAS}:5000/#/signin
+        url: icmp://${NAS}
         interval: 1m
-        client:
-          insecure: true
-          ignore-redirect: false
-          timeout: 10s
         conditions:
-          - "[STATUS] == 200"
+          - "[CONNECTED] == true"
         alerts:
           - type: pushover
