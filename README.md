@@ -29,7 +29,7 @@ This is home to my personal Kubernetes cluster. [Flux](https://github.com/fluxcd
 
 | Device                                        | CPU          | RAM   | OS           | Disks                                                            | NICs                          |
 |-----------------------------------------------|--------------|-------|--------------|------------------------------------------------------------------|-------------------------------|
-| 1 x Synology DS1821+  | AMD Ryzen V1500B  | 32GB   | DSM 7.2          | 8x18TB Seagate Exos X18 SHR 114TB Usable           | 2x 10GB Mellanox ConnectX-4             |
+| 1 x Synology DS1821+  | AMD Ryzen V1500B  | 32GB   | DSM 7.2          | 8x18TB Seagate Exos 2 x 1TB NVMe 980 Pro  SHR 114TB Usable           | 2x 10GB Mellanox ConnectX-4             |
 | 1 x Open Bench Table            | i7-9700K | 64GB | Ubuntu 22.04 | 3 x 1TB NVMe Samsung 980, 1 x 1TB NVMe SPCC | Intel X710 2 x 10GB SFP+      |
 | 1 x Rosewill 4U         | i7-8700 | 64GB | Ubuntu 22.04 | 3 x 1TB NVMe Samsung 980, 1 x 1TB Intel NVMe, 2x 1TB WD Blue SSD | Intel X710 2 x 10GB SFP+
 | 3 x Intel NUC11TNHi70L                           | i7-1165G7    | 32GB  | Ubuntu 22.04  | 1TB NVMe Intel 1TB SanDisk SSD   | 2x I225-LM 2.5GBe |
