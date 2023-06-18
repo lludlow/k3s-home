@@ -17,7 +17,6 @@ data:
           - "[CONNECTED] == true"
         alerts:
           - type: pushover
-
       - name: edge switch
         group: infra
         url: icmp://192.168.10.7
@@ -26,7 +25,6 @@ data:
           - "[CONNECTED] == true"
         alerts:
           - type: pushover
-
       - name: office switch
         group: infra
         url: icmp://192.168.10.6
@@ -35,24 +33,27 @@ data:
           - "[CONNECTED] == true"
         alerts:
           - type: pushover
-
-      - name: check-domain-and-certificate-expiration
+      - name: domain expiration madbuda
         group: domains
         url: "https://madbuda.me
         interval: 1h
         conditions:
           - "[DOMAIN_EXPIRATION] > 720h"
-
-      - name: check-domain-and-certificate-expiration
+        alerts:
+          - type: pushover
+      - name: cdomain expiration subether
         group: domains
         url: "https://subether.me
         interval: 1h
         conditions:
           - "[DOMAIN_EXPIRATION] > 720h"
-
-      - name: check-domain-and-certificate-expiration
+        alerts:
+          - type: pushover
+      - name: domain expiration madhouse
         group: domains
         url: "https://madhouse.pro
         interval: 1h
         conditions:
           - "[DOMAIN_EXPIRATION] > 720h"
+        alerts:
+          - type: pushover
