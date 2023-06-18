@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wizarr-gatus-ep
+  namespace: media
+  labels:
+    gatus.io/enabled: "true"
+data:
+  config.yaml: |
+    endpoints:
+      - name: wizarr
+        group: external
+        url: https://invite.${SECRET_DOMAIN}
+        interval: 1m
+        client:
+          dns-resolver: tcp://45.90.28.101:53
+        conditions:
+          - "[STATUS] == 200"
+        alerts:
+          - type: pushover
