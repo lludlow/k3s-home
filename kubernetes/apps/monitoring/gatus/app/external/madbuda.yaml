@@ -12,7 +12,7 @@ data:
       - name: domain_expiration_madbuda
         group: domains
         url: "https://madbuda.me"
-        interval: 1h
+        interval: 6h
         conditions:
           - "[DOMAIN_EXPIRATION] > 720h"
         alerts:

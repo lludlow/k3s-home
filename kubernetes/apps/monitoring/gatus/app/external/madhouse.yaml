@@ -12,7 +12,7 @@ data:
       - name: domain_expiration_madhouse
         group: domains
         url: "https://madhouse.me"
-        interval: 1h
+        interval: 3h
         conditions:
           - "[DOMAIN_EXPIRATION] > 720h"
         alerts:

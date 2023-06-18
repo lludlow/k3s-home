@@ -12,7 +12,7 @@ data:
       - name: domain_expiration_subether
         group: domains
         url: "https://subether.me"
-        interval: 1h
+        interval: 2h
         conditions:
           - "[DOMAIN_EXPIRATION] > 720h"
         alerts:
