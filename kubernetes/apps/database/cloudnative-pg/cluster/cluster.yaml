@@ -15,9 +15,8 @@ spec:
     storageClass: local-path
   superuserSecret:
     name: cloudnative-pg-secret
-  # bootstrap:
-  #   recovery:
-  #     source: &previous-cluster postgres-v2
+  enableSuperuserAccess: true
+
   postgresql:
     parameters:
       max_connections: "600"
@@ -40,6 +39,10 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: AWS_SECRET_ACCESS_KEY
+  #bootstrap:
+  #  recovery:
+  #    source: &previous-cluster postgres-v2
+
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   # externalClusters:
   #   - name: *previous-cluster
