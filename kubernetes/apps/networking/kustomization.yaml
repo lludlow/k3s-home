@@ -10,3 +10,4 @@ resources:
   - ./metallb/ks.yaml
   - ./cloudflare-ddns/ks.yaml
   - ./multus/ks.yaml
+  - ./external-services
