@@ -43,7 +43,7 @@ spec:
 
     initContainers:
       volume-permissions:
-        image: dpage/pgadmin4:7.0
+        image: dpage/pgadmin4:7.3
         command: ["/bin/chown", "-R", "5050:5050", "/var/lib/pgadmin"]
         volumeMounts:
           - name: config
