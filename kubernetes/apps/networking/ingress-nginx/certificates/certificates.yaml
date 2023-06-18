@@ -13,6 +13,10 @@ spec:
   dnsNames:
     - "${SECRET_DOMAIN}"
     - "*.${SECRET_DOMAIN}"
+    - "${SECRET_EXTERNAL_DOMAIN}"
+    - "*.${SECRET_EXTERNAL_DOMAIN}"
+    - "${SECRET_EXTERNAL_DOMAIN2}"
+    - "*.${SECRET_EXTERNAL_DOMAIN2}"
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -28,3 +32,7 @@ spec:
   dnsNames:
     - "${SECRET_DOMAIN}"
     - "*.${SECRET_DOMAIN}"
+    - "${SECRET_EXTERNAL_DOMAIN}"
+    - "*.${SECRET_EXTERNAL_DOMAIN}"
+    - "${SECRET_EXTERNAL_DOMAIN2}"
+    - "*.${SECRET_EXTERNAL_DOMAIN2}"
