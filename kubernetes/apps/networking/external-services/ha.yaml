@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ha
+  name: &app ha
   namespace: networking
   labels:
-    app.kubernetes.io/name: ha
-    app.kubernetes.io/instance: ha
+    app.kubernetes.io/name: *app
+    app.kubernetes.io/instance: *app
 spec:
   type: ExternalName
   externalName: ha.
@@ -22,8 +22,8 @@ metadata:
   name: ha
   namespace: networking
   annotations:
-    external-dns.alpha.kubernetes.io/target: "vip2.${SECRET_EXTERNAL_DOMAIN}"
-    hajimari.io/icon: video-input-antenna
+    hajimari.io/icon: mdi:home-assistant
+    hajimari.io/appName: Home Assistant
   labels:
     app.kubernetes.io/name: ha
     app.kubernetes.io/instance: ha
