@@ -31,3 +31,4 @@ repos:
     rev: v8.17.0
     hooks:
       - id: gitleaks
+        args: [-v]

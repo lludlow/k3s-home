@@ -10,3 +10,4 @@ resources:
   - ./unpoller/ks.yaml
   - ./speedtest-prometheus/ks.yaml
   - ./exporters
+  - ./gatus/ks.yaml
