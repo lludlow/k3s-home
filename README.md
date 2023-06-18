@@ -36,8 +36,8 @@ This is home to my personal Kubernetes cluster. [Flux](https://github.com/fluxcd
 | 3 x Lenovo M900                   | i5-6500T     | 8 GB | Ubuntu 22.04  | 1TB SPCC SSD                         |  I219-LM 1GBe  |
 | 1 x Intel NUC7i7BNH                    | i7-7567U     | 8 GB | Ubuntu 22.04  | 250GB SanDisk SSD                         |  1GBe  |
 | 1 x Intel NUC7i7BNH                    | i7-7567U     | 8 GB | HASSIO  | 250GB SanDisk SSD                         |  1GBe  |
-| 1 x Oracle E2.1.Micro                    | x86     | 4 GB | Ubuntu 20.04   | 100GB                         |    |
-| 1 x Oracle A1.Flex   (STATUS PAGE)                 | 4 ARM cores     | 24 GB | Ubuntu 20.04   | 100GB                         |    |
+| 1 x Oracle E2.1.Micro                    | x86     | 4 GB | Ubuntu 20.04   | 100GB                         | (STATUS PAGE)    |
+| 1 x Oracle A1.Flex                   | 4 ARM cores     | 24 GB | Ubuntu 20.04   | 100GB                         |    |
 
 
 
