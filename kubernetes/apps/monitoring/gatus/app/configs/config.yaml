@@ -43,7 +43,15 @@ endpoints:
       - type: pushover
   - name: internet
     group: external
-    url: "tcp://1.1.1.1"
+    url: "icmp://1.1.1.1"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: oci-vpn
+    group: external
+    url: "icmp://10.0.0.232"
     interval: 30s
     conditions:
       - "[CONNECTED] == true"
