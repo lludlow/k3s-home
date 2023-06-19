@@ -52,5 +52,5 @@ spec:
           volumes:
             - name: nas-backups
               nfs:
-                server: "$NAS"
+                server: "${NAS}"
                 path: /volume1/Backup/databases/pgcluster
