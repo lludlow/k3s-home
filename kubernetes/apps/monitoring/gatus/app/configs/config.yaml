@@ -43,7 +43,7 @@ endpoints:
       - type: pushover
   - name: internet
     group: external
-    url: "tcp://vip2.subether.me"
+    url: "tcp://1.1.1.1"
     interval: 30s
     conditions:
       - "[CONNECTED] == true"
