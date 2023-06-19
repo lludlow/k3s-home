@@ -33,9 +33,139 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: pushover
-  - name: firewall
+  - name: homeassistant
+    group: external
+    url: "tcp://192.168.10.70:8123"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: internet
+    group: external
+    url: "tcp://vip2.subether.me"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+#servers
+  - name: k8s-apiserver
     group: servers
+    url: "tcp://192.168.10.251:6443"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: kmaster1
+    group: servers
+    url: "icmp://192.168.10.40"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: kmaster2
+    group: servers
+    url: "icmp://192.168.10.41"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: kmaster3
+    group: servers
+    url: "icmp://192.168.10.42"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: kworker1
+    group: servers
+    url: "icmp://192.168.10.43"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: kworker2
+    group: servers
+    url: "icmp://192.168.10.44"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: kworker3
+    group: servers
+    url: "icmp://192.168.10.45"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: kworker4
+    group: servers
+    url: "icmp://192.168.10.46"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: kworker5
+    group: servers
+    url: "icmp://192.168.10.47"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: nas
+    group: servers
+    url: "icmp://192.168.10.10"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+#network
+  - name: firewall
+    group: network
     url: "icmp://192.168.10.1"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: office-sw
+    group: network
+    url: "icmp://192.168.10.6"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: 10gb-sw
+    group: network
+    url: "icmp://192.168.10.7"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: poe-sw
+    group: network
+    url: "icmp://192.168.10.117"
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+  - name: garage-ap
+    group: network
+    url: "icmp://192.168.10.159"
     interval: 30s
     conditions:
       - "[CONNECTED] == true"
