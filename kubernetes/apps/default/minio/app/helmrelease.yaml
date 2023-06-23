@@ -1,0 +1,99 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app minio
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      interval: 15m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    global:
+      nameOverride: *app
+    image:
+      repository: quay.io/minio/minio
+      tag: RELEASE.2023-06-19T19-52-50Z
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    service:
+      main:
+        ports:
+          http:
+            port: &console-port 9001
+          api:
+            enabled: true
+            port: &api-port 9000
+    ingress:
+      main:
+        enabled: true
+        primary: true
+        ingressClassName: nginx
+        hosts:
+          - host: &host minio.${SECRET_DOMAIN_0}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *console-port
+        tls:
+          - hosts:
+              - *host
+      s3:
+        enabled: true
+        primary: true
+        ingressClassName: nginx
+        hosts:
+          - host: &host s3.${SECRET_DOMAIN_0}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *api-port
+        tls:
+          - hosts:
+              - *host
+
+    serviceMonitor:
+      main:
+        enabled: true
+        endpoints:
+          - port: api
+            scheme: http
+            path: /minio/v2/metrics/cluster
+            interval: 1m
+            scrapeTimeout: 10s
+    args:
+      - server
+      - /data
+      - --console-address
+      - :9001
+    persistence:
+      config:
+        enabled: true
+        existingClaim: minio-zfs
+        mountPath: /data
+    env:
+      MINIO_UPDATE: "off"
+      MINIO_BROWSER_REDIRECT_URL: https://minio.${SECRET_DOMAIN}
+      MINIO_SERVER_URL: https://s3.${SECRET_DOMAIN}
+      MINIO_PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+      MINIO_PROMETHEUS_JOB_ID: minio
+      MINIO_PROMETHEUS_AUTH_TYPE: public
+    envFrom:
+      - secretRef:
+          name: minio-secret
