@@ -104,3 +104,7 @@ spec:
         hostPathType: Directory
         mountPath: /host/sys
         readOnly: true
+
+    tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
