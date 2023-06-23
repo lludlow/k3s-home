@@ -38,13 +38,15 @@ spec:
           api:
             enabled: true
             port: &api-port 9000
+
     ingress:
       main:
         enabled: true
-        primary: true
         ingressClassName: nginx
+        annotations:
+          hajimari.io/icon: bucket-outline
         hosts:
-          - host: &host minio.${SECRET_DOMAIN_0}
+          - host: &host minio.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
@@ -55,10 +57,9 @@ spec:
               - *host
       s3:
         enabled: true
-        primary: true
         ingressClassName: nginx
         hosts:
-          - host: &host s3.${SECRET_DOMAIN_0}
+          - host: &host s3.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
