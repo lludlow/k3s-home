@@ -100,4 +100,4 @@ spec:
 
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
-      app.kubernetes.io/component/zfs: "true"
+      node-restriction.kubernetes.io/zfs: "true"
