@@ -91,6 +91,7 @@ spec:
       - /data
       - --console-address
       - :9001
+
     persistence:
       config:
         enabled: true
@@ -104,6 +105,7 @@ spec:
       MINIO_PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
       MINIO_PROMETHEUS_JOB_ID: minio
       MINIO_PROMETHEUS_AUTH_TYPE: public
+      MINIO_VOLUMES: /data
     envFrom:
       - secretRef:
           name: minio-secret
