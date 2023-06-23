@@ -12,3 +12,7 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: "/tank/minio"
+
+  nodeSelector:
+    node-role.kubernetes.io/worker: "true"
+    node-restriction.kubernetes.io/zfs: "true"
