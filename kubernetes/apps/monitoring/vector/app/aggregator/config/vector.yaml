@@ -81,7 +81,7 @@ sinks:
     remove_label_fields: true
     remove_timestamp: true
     labels:
-      hostname: "{{ host }}"
+      hostname: "nas"
 
   udm_syslog:
     inputs: ["udm_source"]
@@ -92,4 +92,4 @@ sinks:
     remove_label_fields: true
     remove_timestamp: true
     labels:
-      hostname: "{{ host }}"
+      hostname: "udm"
