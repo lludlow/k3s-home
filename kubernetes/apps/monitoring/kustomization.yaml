@@ -11,3 +11,4 @@ resources:
   - ./speedtest-prometheus/ks.yaml
   - ./exporters
   - ./gatus/ks.yaml
+  - ./vector/ks.yaml
