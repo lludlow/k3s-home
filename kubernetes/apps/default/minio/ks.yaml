@@ -6,7 +6,7 @@ metadata:
   name: cluster-apps-minio
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/default/mini/app
+  path: ./kubernetes/apps/default/minio/app
   prune: true
   sourceRef:
     kind: GitRepository
