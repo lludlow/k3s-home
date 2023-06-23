@@ -97,3 +97,7 @@ spec:
     envFrom:
       - secretRef:
           name: minio-secret
+
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
+      app.kubernetes.io/component/zfs: "true"
