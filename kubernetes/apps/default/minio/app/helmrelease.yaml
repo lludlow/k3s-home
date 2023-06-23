@@ -111,9 +111,3 @@ spec:
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
       node-restriction.kubernetes.io/zfs: "true"
-
-    podSecurityContext:
-      runAsUser: 1032
-      runAsGroup: 100
-      fsGroup: 100
-      fsGroupChangePolicy: "OnRootMismatch"
