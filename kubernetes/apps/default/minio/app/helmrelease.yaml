@@ -65,9 +65,7 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-        tls:
-          - hosts:
-              - *host
+
       s3:
         enabled: true
         ingressClassName: nginx
@@ -78,17 +76,15 @@ spec:
                 pathType: Prefix
                 service:
                   port: *api-port
-        tls:
-          - hosts:
-              - *host-api
+
     env:
       MINIO_UPDATE: "off"
-      MINIO_BROWSER_REDIRECT_URL: https://minio.madhouse.pro
-      MINIO_SERVER_URL: https://s3.madhouse.pro
-      MINIO_PROMETHEUS_URL: https://prometheus.madhouse.pro
+      MINIO_BROWSER_REDIRECT_URL: http://minio.madhouse.pro
+      MINIO_SERVER_URL: http://s3.madhouse.pro
+      MINIO_PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
       MINIO_PROMETHEUS_JOB_ID: minio
       MINIO_PROMETHEUS_AUTH_TYPE: public
-      MINIO_API_CORS_ALLOW_ORIGIN: https://minio.madhouse.pro,https://s3.madhouse.pro
+      MINIO_API_CORS_ALLOW_ORIGIN: http://minio.madhouse.pro,http://s3.madhouse.pro
     envFrom:
       - secretRef:
           name: minio-secret
