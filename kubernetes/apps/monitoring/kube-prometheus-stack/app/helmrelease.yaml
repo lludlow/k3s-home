@@ -243,7 +243,12 @@ spec:
             metrics_path: /minio/v2/metrics/cluster
             scheme: http
             static_configs:
-              - targets: ["192.168.10.10:9000,192.168.10.47:9000"]
+              - targets: ["192.168.10.10:9000"]
+          - job_name: minio-job
+            metrics_path: /minio/v2/metrics/cluster
+            scheme: http
+            static_configs:
+              - targets: ["192.168.10.47:9000"]
           - job_name: gatus
             static_configs:
               - targets: ["status.madbuda.me"] # router
