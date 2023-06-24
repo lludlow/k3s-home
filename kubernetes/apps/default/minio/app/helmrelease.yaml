@@ -26,23 +26,28 @@ spec:
       nameOverride: *app
     image:
       repository: quay.io/minio/minio
-      tag: RELEASE.2023-06-02T23-17-26Z
+      tag: RELEASE.2022-07-17T15-43-14Z
     controller:
       annotations:
         reloader.stakater.com/auto: "true"
+
     service:
       main:
+        enabled: true
         ports:
           http:
-            port: 9001
+            enabled: true
+            port: &port-console 9001
           api:
             enabled: true
-            port: &api-port 9000
+            port: &port-api 9000
+
     args:
       - server
       - /data
       - --console-address
       - :9001
+
     persistence:
       config:
         enabled: true
@@ -57,55 +62,40 @@ spec:
     ingress:
       main:
         enabled: true
+        ingressClassName: "nginx"
         annotations:
-          nginx.ingress.kubernetes.io/whitelist-source-range: |
-            10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            more_set_headers "Access-Control-Allow-Origin: $http_origin";
-          nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
-          nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS, DELETE, PATCH
-          nginx.ingress.kubernetes.io/enable-cors: "true"
-          hajimari.io/appName: "Minio Console"
-          hajimari.io/icon: mdi:pail
-          nginx.ingress.kubernetes.io/ssl-redirect: "false"
-          ingress.kubernetes.io/ssl-redirect: "false"
-        ingressClassName: nginx
-        hosts:
-          - host: &host "minio.madhouse.pro"
-            paths:
-              - path: /
-                pathType: Prefix
-
-      s3:
-        enabled: true
-        ingressClassName: nginx
-        annotations:
-          nginx.ingress.kubernetes.io/ssl-redirect: "false"
-          ingress.kubernetes.io/ssl-redirect: "false"
-          nginx.ingress.kubernetes.io/proxy-connect-timeout: "180"
-          nginx.ingress.kubernetes.io/proxy-body-size: 1024m
+          hajimari.io/icon: "progress-upload"
+          nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
+          nginx.ingress.kubernetes.io/proxy-body-size: 5000m
           nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
           nginx.ingress.kubernetes.io/configuration-snippet: |
             chunked_transfer_encoding off;
         hosts:
-          - host: &host-api "s3.madhouse.pro"
+          - host: &host-console "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
                 service:
-                  port: *api-port
+                  port: *port-console
+          - host: &host-api "s3.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *port-api
+        tls:
+          - hosts:
+              - *host-console
+              - *host-api
 
     env:
       TZ: "${TIMEZONE}"
       MINIO_UPDATE: "off"
-      MINIO_BROWSER_REDIRECT_URL: "http://minio.${SECRET_DOMAIN}"
-      MINIO_SERVER_URL: "http://s3.${SECRET_DOMAIN}"
-      CONSOLE_MINIO_SERVER: "http://minio.${SECRET_DOMAIN}"
-      MINIO_DOMAIN: "http://s3.${SECRET_DOMAIN}"
-      MINIO_API_CORS_ALLOW_ORIGIN: "http://minio.${SECRET_DOMAIN},http://s3.${SECRET_DOMAIN}"
       MINIO_PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
       MINIO_PROMETHEUS_JOB_ID: minio
       MINIO_PROMETHEUS_AUTH_TYPE: public
+      MINIO_BROWSER_REDIRECT_URL: "https://minio.${SECRET_DOMAIN}"
+      MINIO_SERVER_URL: "https://s3.${SECRET_DOMAIN}"
     envFrom:
       - secretRef:
           name: minio-secret
