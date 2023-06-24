@@ -73,13 +73,12 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-        tls:
-          - hosts:
-              - *host
+
       s3:
         enabled: true
         ingressClassName: nginx
         annotations:
+          nginx.ingress.kubernetes.io/ssl-redirect: false
           nginx.ingress.kubernetes.io/proxy-connect-timeout: "180"
           nginx.ingress.kubernetes.io/proxy-body-size: 1024m
           nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
@@ -92,17 +91,18 @@ spec:
                 pathType: Prefix
                 service:
                   port: *api-port
-        tls:
-          - hosts:
-              - *host-api
+
     env:
+      TZ: "${TIMEZONE}"
       MINIO_UPDATE: "off"
-      MINIO_BROWSER_REDIRECT_URL: https://minio.madhouse.pro/
-      MINIO_SERVER_URL: https://s3.madhouse.pro
+      MINIO_BROWSER_REDIRECT_URL: "http://minio.${SECRET_DOMAIN}"
+      MINIO_SERVER_URL: "http://s3.${SECRET_DOMAIN}"
+      CONSOLE_MINIO_SERVER: "http://minio.${SECRET_DOMAIN}"
+      MINIO_DOMAIN: "http://s3.${SECRET_DOMAIN}"
+      MINIO_API_CORS_ALLOW_ORIGIN: "http://minio.${SECRET_DOMAIN},http://s3.${SECRET_DOMAIN}"
       MINIO_PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
       MINIO_PROMETHEUS_JOB_ID: minio
       MINIO_PROMETHEUS_AUTH_TYPE: public
-      MINIO_API_CORS_ALLOW_ORIGIN: https://minio.madhouse.pro,https://s3.madhouse.pro
     envFrom:
       - secretRef:
           name: minio-secret
