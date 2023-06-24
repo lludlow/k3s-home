@@ -68,6 +68,7 @@ spec:
           hajimari.io/appName: "Minio Console"
           hajimari.io/icon: mdi:pail
           nginx.ingress.kubernetes.io/ssl-redirect: "false"
+          ingress.kubernetes.io/ssl-redirect: "false"
         ingressClassName: nginx
         hosts:
           - host: &host "minio.madhouse.pro"
@@ -80,6 +81,7 @@ spec:
         ingressClassName: nginx
         annotations:
           nginx.ingress.kubernetes.io/ssl-redirect: "false"
+          ingress.kubernetes.io/ssl-redirect: "false"
           nginx.ingress.kubernetes.io/proxy-connect-timeout: "180"
           nginx.ingress.kubernetes.io/proxy-body-size: 1024m
           nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
