@@ -95,13 +95,20 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: minio-zfs
+        type: hostPath
+        hostPath: /tank/minio
         mountPath: /data
+
+    podSecurityContext:
+      runAsUser: 0
+      privileged: true
+
     env:
       MINIO_UPDATE: "off"
       TZ: "${TIMEZONE}"
-      MINIO_BROWSER_REDIRECT_URL: https://minio.${SECRET_DOMAIN}
-      MINIO_SERVER_URL: https://s3.${SECRET_DOMAIN}
+      MINIO_BROWSER_REDIRECT_URL: https://minio.madhouse.pro
+      MINIO_SERVER_URL: https://s3.madhouse.pro
+      MINIO_API_CORS_ALLOW_ORIGIN: https://minio.madhouse.pro,https://s3.madhouse.pro
       MINIO_PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
       MINIO_PROMETHEUS_JOB_ID: minio
       MINIO_PROMETHEUS_AUTH_TYPE: public
