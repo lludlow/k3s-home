@@ -50,7 +50,7 @@ spec:
                 priority: |-
                   {{ if eq .Status "firing" }}1{{ else }}0{{ end }}
                 title: |-
-                   {{ .CommonLabels.alertname }} [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}]
+                  {{ .CommonLabels.alertname }} [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}]
                 message: |-
                   {{- range .Alerts }}
                     {{- if ne .Annotations.description "" }}
@@ -243,7 +243,7 @@ spec:
             metrics_path: /minio/v2/metrics/cluster
             scheme: http
             static_configs:
-              - targets: ['192.168.10.10:9000']
+              - targets: ["192.168.10.10:9000,192.168.10.47:9000"]
           - job_name: gatus
             static_configs:
               - targets: ["status.madbuda.me"] # router
