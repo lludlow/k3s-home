@@ -67,6 +67,7 @@ spec:
           nginx.ingress.kubernetes.io/enable-cors: "true"
           hajimari.io/appName: "Minio Console"
           hajimari.io/icon: mdi:pail
+          nginx.ingress.kubernetes.io/ssl-redirect: "http"
         ingressClassName: nginx
         hosts:
           - host: &host "minio.madhouse.pro"
@@ -78,7 +79,7 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          nginx.ingress.kubernetes.io/ssl-redirect: false
+          nginx.ingress.kubernetes.io/ssl-redirect: "http"
           nginx.ingress.kubernetes.io/proxy-connect-timeout: "180"
           nginx.ingress.kubernetes.io/proxy-body-size: 1024m
           nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
@@ -95,11 +96,11 @@ spec:
     env:
       TZ: "${TIMEZONE}"
       MINIO_UPDATE: "off"
-      MINIO_BROWSER_REDIRECT_URL: "http://minio.${SECRET_DOMAIN}"
-      MINIO_SERVER_URL: "http://s3.${SECRET_DOMAIN}"
-      CONSOLE_MINIO_SERVER: "http://minio.${SECRET_DOMAIN}"
-      MINIO_DOMAIN: "http://s3.${SECRET_DOMAIN}"
-      MINIO_API_CORS_ALLOW_ORIGIN: "http://minio.${SECRET_DOMAIN},http://s3.${SECRET_DOMAIN}"
+      MINIO_BROWSER_REDIRECT_URL: "https://minio.${SECRET_DOMAIN}"
+      MINIO_SERVER_URL: "https://s3.${SECRET_DOMAIN}"
+      CONSOLE_MINIO_SERVER: "https://minio.${SECRET_DOMAIN}"
+      MINIO_DOMAIN: "https://s3.${SECRET_DOMAIN}"
+      MINIO_API_CORS_ALLOW_ORIGIN: "https://minio.${SECRET_DOMAIN},https://s3.${SECRET_DOMAIN}"
       MINIO_PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
       MINIO_PROMETHEUS_JOB_ID: minio
       MINIO_PROMETHEUS_AUTH_TYPE: public
