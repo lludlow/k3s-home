@@ -31,4 +31,4 @@ resources:
   - ./longhorn-charts.yaml
   - ./angelnu.yaml
   - ./cloudnative-pg.yaml
-  
+  - ./itzg-minecraft-server-charts.yaml
