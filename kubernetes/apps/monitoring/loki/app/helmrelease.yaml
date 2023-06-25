@@ -79,7 +79,7 @@ spec:
               s3: null
               insecure: true
               s3forcepathstyle: true
-              endpoint: "${NAS}:9000"
+              endpoint: "http://192.168.10.47:9000"
               bucketnames: loki
               access_key_id: "loki"
               secret_access_key: "${SECRET_LOKI_PASS}"
