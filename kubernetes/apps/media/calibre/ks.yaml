@@ -12,4 +12,5 @@ spec:
     kind: GitRepository
     name: home-kubernetes
   wait: false # no flux ks dependents
-
+  dependsOn:
+    - name: cluster-apps-longhorn

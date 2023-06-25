@@ -15,3 +15,5 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 15m
+  dependsOn:
+    - name: cluster-apps-longhorn
