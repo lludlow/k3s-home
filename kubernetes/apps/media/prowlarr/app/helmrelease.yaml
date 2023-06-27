@@ -27,7 +27,6 @@ spec:
     keepHistory: false
 
   values:
-
     controller:
       type: statefulset
       annotations:
@@ -75,6 +74,7 @@ spec:
         ingressClassName: nginx
         annotations:
           hajimari.io/icon: mdi:movie-search
+          external-dns.alpha.kubernetes.io/target: local.${SECRET_DOMAIN}
         hosts:
           - host: &host "prowlarr.${SECRET_DOMAIN}"
             paths:
