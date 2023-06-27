@@ -51,7 +51,7 @@ endpoints:
       - type: pushover
   - name: oci-vpn
     group: external
-    url: "icmp://10.0.0.232"
+    url: "icmp://10.0.0.16"
     interval: 30s
     conditions:
       - "[CONNECTED] == true"
@@ -174,14 +174,6 @@ endpoints:
   - name: garage-ap
     group: network
     url: "icmp://192.168.10.159"
-    interval: 30s
-    conditions:
-      - "[CONNECTED] == true"
-    alerts:
-      - type: pushover
-  - name: uptime-kuma
-    group: external
-    url: "icmp://10.0.0.201"
     interval: 30s
     conditions:
       - "[CONNECTED] == true"
