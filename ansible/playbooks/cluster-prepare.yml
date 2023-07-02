@@ -17,7 +17,6 @@
             name: "{{ timezone | default('Etc/UTC') }}"
 
     - name: Networking
-      notify: Restart systemd-networkd
       block:
         - name: Networking | Set hostname to inventory hostname
           ansible.builtin.hostname:
@@ -27,17 +26,6 @@
             path: /etc/hosts
             block: |
               127.0.1.1   {{ inventory_hostname }}
-        # https://github.com/cilium/cilium/issues/18706
-        - name: Network | Cilium (1)
-          ansible.builtin.lineinfile:
-            dest: /etc/systemd/networkd.conf
-            regexp: ManageForeignRoutingPolicyRules
-            line: ManageForeignRoutingPolicyRules=no
-        - name: Network Configuration | Cilium (2)
-          ansible.builtin.lineinfile:
-            dest: /etc/systemd/networkd.conf
-            regexp: ManageForeignRoutes
-            line: ManageForeignRoutes=no
 
     - name: Packages
       block:
@@ -55,6 +43,17 @@
             install_recommends: false
           notify: Reboot
           when: "'raspi' in ansible_kernel"
+
+    - name: Packages | Cilium CLI
+      ansible.builtin.include_role:
+        name: githubixx.cilium_cli
+        public: true
+      vars:
+        cilium_cli_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else 'arm64' }}"
+        cilium_cli_tmp_directory: /tmp
+      when:
+        - k3s_control_node is defined
+        - k3s_control_node
 
     - name: User Configuration
       block:
@@ -124,10 +123,6 @@
       notify: Reboot
 
   handlers:
-    - name: Restart systemd-networkd
-      ansible.builtin.systemd:
-        service: systemd-networkd
-        state: restarted
     - name: Reboot
       ansible.builtin.reboot:
         msg: Rebooting nodes
