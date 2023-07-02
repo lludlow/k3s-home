@@ -25,6 +25,11 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  dependsOn:
+    - name: local-path-provisioner
+      namespace: kube-system
+    - name: ingress-nginx
+      namespace: networking
   values:
     admin:
       existingSecret: grafana-admin-secret
