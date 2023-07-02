@@ -16,8 +16,8 @@ alerting:
     default-alert:
       description: healthcheck failed
       send-on-resolved: true
-      failure-threshold: 3
-      success-threshold: 5
+      failure-threshold: 5
+      success-threshold: 3
 connectivity:
   checker:
     target: 1.1.1.1:53
