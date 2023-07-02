@@ -172,7 +172,7 @@ spec:
 
     kubeControllerManager:
       enabled: true
-      endpoints: ["192.168.10.40", "192.168.10.41", "192.168.10.42"]
+      endpoints: ["192.168.10.40"]
       serviceMonitor:
         metricRelabelings:
           # Remove duplicate metrics
@@ -182,7 +182,7 @@ spec:
 
     kubeEtcd:
       enabled: true
-      endpoints: ["192.168.10.40", "192.168.10.41", "192.168.10.42"]
+      endpoints: ["192.168.10.40"]
       service:
         enabled: true
         port: 2381
@@ -193,7 +193,7 @@ spec:
 
     kubeScheduler:
       enabled: true
-      endpoints: ["192.168.10.40", "192.168.10.41", "192.168.10.42"]
+      endpoints: ["192.168.10.40"]
       serviceMonitor:
         metricRelabelings:
           # Remove duplicate metrics
@@ -248,7 +248,7 @@ spec:
             metrics_path: /minio/v2/metrics/cluster
             scheme: http
             static_configs:
-              - targets: ["192.168.10.47:9000"]
+              - targets: ["192.168.10.46:9000"]
           - job_name: gatus
             static_configs:
               - targets: ["status.madbuda.me"] # router
