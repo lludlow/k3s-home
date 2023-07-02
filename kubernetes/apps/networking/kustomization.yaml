@@ -9,5 +9,5 @@ resources:
   - ./k8s-gateway/ks.yaml
   - ./metallb/ks.yaml
   - ./cloudflare-ddns/ks.yaml
-  #- ./multus/ks.yaml
+  - ./multus/ks.yaml
   - ./external-services/ks.yaml
