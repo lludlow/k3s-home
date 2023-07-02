@@ -17,3 +17,5 @@ spec:
   timeout: 5m
   dependsOn:
     - name: cluster-apps-longhorn
+    - name: cluster-apps-radarr
+    - name: cluster-apps-sonarr
