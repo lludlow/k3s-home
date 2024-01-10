@@ -12,8 +12,8 @@ _... managed with Flux and Renovate_ :robot:
 
 <div align="center">
 
-[![GitHub last commit](https://img.shields.io/github/last-commit/madbuda/k3s-home?color=purple&style=for-the-badge)](https://github.com/madbuda/k3s-home/commits/main 'Commit History')
-[![Release](https://img.shields.io/github/v/release/madbuda/k3s-home?style=for-the-badge)](https://github.com/madbuda/k3s-home/releases 'Repo releases')\
+[![GitHub last commit](https://img.shields.io/github/last-commit/lludlow/k3s-home?color=purple&style=for-the-badge)](https://github.com/lludlow/k3s-home/commits/main 'Commit History')
+[![Release](https://img.shields.io/github/v/release/lludlow/k3s-home?style=for-the-badge)](https://github.com/lludlow/k3s-home/releases 'Repo releases')\
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=for-the-badge)](https://github.com/pre-commit/pre-commit)
 [![renovate](https://img.shields.io/badge/renovate-enabled-brightgreen?style=for-the-badge&logo=renovatebot&logoColor=white)](https://github.com/renovatebot/renovate)
 </div>
