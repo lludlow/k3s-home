@@ -9,7 +9,7 @@ collections:
   - name: ansible.utils
     version: 2.10.3
   - name: kubernetes.core
-    version: 2.4.0
+    version: 2.4.2
 roles:
   - name: githubixx.cilium_cli
     version: 2.7.0+0.15.8
