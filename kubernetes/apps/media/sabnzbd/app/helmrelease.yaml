@@ -34,7 +34,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/sabnzbd
-      tag: 4.1.0@sha256:1c1650511f96108e81d677abe8a2e491507caa023fdc5c2bfc99df087634c9f3
+      tag: 4.3.2@sha256:8e70a877c77805dfe93ce30a8da3362fbddf221ef806951d4e4634bb80dc87b5
 
     env:
       TZ: ${TZ}
