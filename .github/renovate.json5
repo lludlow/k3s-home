@@ -26,7 +26,7 @@
   suppressNotifications: ["prIgnoreNotification"],
   rebaseWhen: "conflicted",
   timezone: "America/Detroit",
-  schedule: ["before 6am"],
+  schedule: ["every weekend"],
   "pre-commit": {
     enabled: true,
   },
