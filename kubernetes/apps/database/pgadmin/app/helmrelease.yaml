@@ -26,7 +26,7 @@ spec:
   values:
     image:
       repository: dpage/pgadmin4
-      tag: "8.8"
+      tag: "8.9"
 
     controller:
       replicas: 1
@@ -43,7 +43,7 @@ spec:
 
     initContainers:
       volume-permissions:
-        image: dpage/pgadmin4:8.8
+        image: dpage/pgadmin4:8.9
         command: ["/bin/chown", "-R", "5050:5050", "/var/lib/pgadmin"]
         volumeMounts:
           - name: config
